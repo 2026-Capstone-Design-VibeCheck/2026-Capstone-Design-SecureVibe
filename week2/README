@@ -1,0 +1,2 @@
+1.cmd 창에 pip install fastapi uvicorn semgrep 입력
+2.cmd 창에 uvicorn main:app --reload 입력 후 http://localhost:8000/ 접속
