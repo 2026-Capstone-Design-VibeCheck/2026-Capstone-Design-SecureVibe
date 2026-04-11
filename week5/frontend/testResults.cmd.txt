@@ -1,0 +1,459 @@
+
+> secure_vibe@0.1.0 test
+> vitest --run
+
+
+[1m[46m RUN [49m[22m [36mv4.1.1 [39m[90mC:/Users/Somi/Desktop/antigravity_workplace/secure_vibe[39m
+
+ [32m✓[39m src/presentation/components/features/CodeEditorInput.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 51[2mms[22m[39m
+ [31m❯[39m src/presentation/components/features/SecurityInfoCard.test.tsx [2m([22m[2m2 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[32m 97[2mms[22m[39m
+[31m     [31m×[31m renders the title and icon[39m[32m 72[2mms[22m[39m
+[31m     [31m×[31m shows tooltip/description on hover[39m[32m 21[2mms[22m[39m
+ [32m✓[39m src/presentation/components/features/FileDropzone.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 105[2mms[22m[39m
+ [32m✓[39m src/presentation/components/features/ScanInputSelector.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 276[2mms[22m[39m
+Not implemented: Window's alert() method
+ [32m✓[39m src/presentation/components/features/ScanAction.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[33m 360[2mms[22m[39m
+ [32m✓[39m src/presentation/components/features/UserProfileDropdown.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 255[2mms[22m[39m
+ [31m❯[39m src/presentation/components/layout/LandingPage.test.tsx [2m([22m[2m2 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 431[2mms[22m[39m
+[31m     [31m×[31m renders all key components[39m[33m 374[2mms[22m[39m
+     [32m✓[39m has accessible buttons[32m 52[2mms[22m[39m
+ [32m✓[39m src/presentation/components/features/NotificationDropdown.test.tsx [2m([22m[2m1 test[22m[2m)[22m[32m 250[2mms[22m[39m
+ [32m✓[39m src/presentation/components/layout/NavBar.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 272[2mms[22m[39m
+ [32m✓[39m src/application/usecases/ExecuteScanUseCase.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 3023[2mms[22m[39m
+     [33m[2m✓[22m[39m returns a success and mock job ID when valid files are provided [33m 1506[2mms[22m[39m
+     [33m[2m✓[22m[39m returns a success and mock job ID when valid code is provided [33m 1509[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 3 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m src/presentation/components/features/SecurityInfoCard.test.tsx[2m > [22mSecurityInfoCard[2m > [22mrenders the title and icon
+[31m[1mTestingLibraryElementError[22m: Found multiple elements with the text: Deep AI Scanning
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<h3[31m
+  [33mclass[31m=[32m"text-xl font-bold text-gray-800 mb-2"[31m
+[36m>[31m
+  [0mDeep AI Scanning[0m
+[36m</h3>[31m
+
+Ignored nodes: comments, script, style
+[36m<div[31m
+  [33mclass[31m=[32m"font-semibold mb-1"[31m
+[36m>[31m
+  [0mDeep AI Scanning[0m
+[36m</div>[31m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33mclass[31m=[32m"relative p-6 border rounded-2xl bg-white hover:shadow-xl transition-all cursor-crosshair group h-full flex flex-col"[31m
+      [33mdata-testid[31m=[32m"security-card-1"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4 bg-gray-50 p-3 rounded-xl w-fit group-hover:bg-teal-50 transition-colors"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-brain-circuit w-8 h-8 text-obsidian-green"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<path[31m
+            [33md[31m=[32m"M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"[31m
+          [36m/>[31m
+          [36m<path[31m
+            [33md[31m=[32m"M9 13a4.5 4.5 0 0 0 3-4"[31m
+          [36m/>[31m
+          [36m<path[31m
+            [33md[31m=[32m"M6.003 5.125A3 3 0 0 0 6.401 6.5"[31m
+          [36m/>[31m
+          [36m<path[31m
+            [33md[31m=[32m"M3.477 10.896a4 4 0 0 1 .585-.396"[31m
+          [36m/>[31m
+          [36m<path[31m
+            [33md[31m=[32m"M6 18a4 4 0 0 1-1.967-.516"[31m
+          [36m/>[31m
+          [36m<path[31m
+            [33md[31m=[32m"M12 13h4"[31m
+          [36m/>[31m
+          [36m<path[31m
+            [33md[31m=[32m"M12 18h6a2 2 0 0 1 2 2v1"[31m
+          [36m/>[31m
+          [36m<path[31m
+            [33md[31m=[32m"M12 8h8"[31m
+          [36m/>[31m
+          [36m<path[31m
+            [33md[31m=[32m"M16 8V5a2 2 0 0 1 2-2"[31m
+          [36m/>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"16"[31m
+            [33mcy[31m=[32m"13"[31m
+            [33mr[31m=[32m".5"[31m
+          [36m/>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"18"[31m
+            [33mcy[31m=[32m"3"[31m
+            [33mr[31m=[32m".5"[31m
+          [36m/>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"20"[31m
+            [33mcy[31m=[32m"21"[31m
+            [33mr[31m=[32m".5"[31m
+          [36m/>[31m
+          [36m<circle[31m
+            [33mcx[31m=[32m"20"[31m
+            [33mcy[31m=[32m"8"[31m
+            [33mr[31m=[32m".5"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h3[31m
+        [33mclass[31m=[32m"text-xl font-bold text-gray-800 mb-2"[31m
+      [36m>[31m
+        [0mDeep AI Scanning[0m
+      [36m</h3>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-gray-500 line-clamp-2"[31m
+      [36m>[31m
+        [0mAdvanced AI analysis to detect zero-day vulnerabilities.[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"absolute left-0 bottom-full mb-4 w-full p-4 bg-gray-900 text-white text-sm rounded-lg shadow-2xl transition-all duration-300 z-50 opacity-0 translate-y-2 pointer-events-none"[31m
+      [36m>[31m
+        [36m<div[31m
+          [33mclass[31m=[32m"font-semibold mb-1"[31m
+        [36m>[31m
+          [0mDeep AI Scanning[0m
+        [36m</div>[31m
+        [36m<div>[31m
+          [0mAdvanced AI analysis to detect zero-day vulnerabilities.[0m
+        [36m</div>[31m
+        [36m<div[31m
+          [33mclass[31m=[32m"absolute left-6 top-full w-0 h-0 border-l-[8px] border-l-transparent border-t-[8px] border-t-gray-900 border-r-[8px] border-r-transparent"[31m
+        [36m/>[31m
+      [36m</div>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+[90m [2m❯[22m Object.getElementError node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+[90m [2m❯[22m getElementError node_modules/@testing-library/dom/dist/query-helpers.js:[2m20:35[22m[39m
+[90m [2m❯[22m getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:[2m23:10[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m55:13[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m95:19[22m[39m
+[36m [2m❯[22m src/presentation/components/features/SecurityInfoCard.test.tsx:[2m16:19[22m[39m
+    [90m 14|[39m     [34mrender[39m([33m<[39m[33mSecurityInfoCard[39m [33mfeature[39m[33m=[39m[33m{[39mfeature[33m}[39m [33m/[39m[33m>[39m)
+    [90m 15|[39m
+    [90m 16|[39m     [34mexpect[39m(screen[33m.[39m[34mgetByText[39m([32m'Deep AI Scanning'[39m))[33m.[39m[34mtoBeInTheDocument[39m()
+    [90m   |[39m                   [31m^[39m
+    [90m 17|[39m     // Sub-description or tooltip shouldn't be fully visible as text u…
+    [90m 18|[39m   })
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/presentation/components/features/SecurityInfoCard.test.tsx[2m > [22mSecurityInfoCard[2m > [22mshows tooltip/description on hover
+[31m[1mTestingLibraryElementError[22m: Found multiple elements with the text: Complete coverage of OWASP top 10 security risks.
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<p[31m
+  [33mclass[31m=[32m"text-gray-500 line-clamp-2"[31m
+[36m>[31m
+  [0mComplete coverage of OWASP top 10 security risks.[0m
+[36m</p>[31m
+
+Ignored nodes: comments, script, style
+[36m<div>[31m
+  [0mComplete coverage of OWASP top 10 security risks.[0m
+[36m</div>[31m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[31m
+  [36m<div>[31m
+    [36m<div[31m
+      [33mclass[31m=[32m"relative p-6 border rounded-2xl bg-white hover:shadow-xl transition-all cursor-crosshair group h-full flex flex-col"[31m
+      [33mdata-testid[31m=[32m"security-card-2"[31m
+    [36m>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"mb-4 bg-gray-50 p-3 rounded-xl w-fit group-hover:bg-teal-50 transition-colors"[31m
+      [36m>[31m
+        [36m<svg[31m
+          [33maria-hidden[31m=[32m"true"[31m
+          [33mclass[31m=[32m"lucide lucide-shield-check w-8 h-8 text-obsidian-green"[31m
+          [33mfill[31m=[32m"none"[31m
+          [33mheight[31m=[32m"24"[31m
+          [33mstroke[31m=[32m"currentColor"[31m
+          [33mstroke-linecap[31m=[32m"round"[31m
+          [33mstroke-linejoin[31m=[32m"round"[31m
+          [33mstroke-width[31m=[32m"2"[31m
+          [33mviewBox[31m=[32m"0 0 24 24"[31m
+          [33mwidth[31m=[32m"24"[31m
+          [33mxmlns[31m=[32m"http://www.w3.org/2000/svg"[31m
+        [36m>[31m
+          [36m<path[31m
+            [33md[31m=[32m"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"[31m
+          [36m/>[31m
+          [36m<path[31m
+            [33md[31m=[32m"m9 12 2 2 4-4"[31m
+          [36m/>[31m
+        [36m</svg>[31m
+      [36m</div>[31m
+      [36m<h3[31m
+        [33mclass[31m=[32m"text-xl font-bold text-gray-800 mb-2"[31m
+      [36m>[31m
+        [0mOWASP Top 10[0m
+      [36m</h3>[31m
+      [36m<p[31m
+        [33mclass[31m=[32m"text-gray-500 line-clamp-2"[31m
+      [36m>[31m
+        [0mComplete coverage of OWASP top 10 security risks.[0m
+      [36m</p>[31m
+      [36m<div[31m
+        [33mclass[31m=[32m"absolute left-0 bottom-full mb-4 w-full p-4 bg-gray-900 text-white text-sm rounded-lg shadow-2xl transition-all duration-300 z-50 opacity-100 translate-y-0"[31m
+      [36m>[31m
+        [36m<div[31m
+          [33mclass[31m=[32m"font-semibold mb-1"[31m
+        [36m>[31m
+          [0mOWASP Top 10[0m
+        [36m</div>[31m
+        [36m<div>[31m
+          [0mComplete coverage of OWASP top 10 security risks.[0m
+        [36m</div>[31m
+        [36m<div[31m
+          [33mclass[31m=[32m"absolute left-6 top-full w-0 h-0 border-l-[8px] border-l-transparent border-t-[8px] border-t-gray-900 border-r-[8px] border-r-transparent"[31m
+        [36m/>[31m
+      [36m</div>[31m
+    [36m</div>[31m
+  [36m</div>[31m
+[36m</body>[31m[39m
+[90m [2m❯[22m Object.getElementError node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+[90m [2m❯[22m getElementError node_modules/@testing-library/dom/dist/query-helpers.js:[2m20:35[22m[39m
+[90m [2m❯[22m getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:[2m23:10[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m55:13[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m95:19[22m[39m
+[36m [2m❯[22m src/presentation/components/features/SecurityInfoCard.test.tsx:[2m36:19[22m[39m
+    [90m 34|[39m     [90m// For JS-based hover, we would do:[39m
+    [90m 35|[39m     fireEvent[33m.[39m[34mmouseEnter[39m(card)
+    [90m 36|[39m     expect(screen.getByText('Complete coverage of OWASP top 10 securit…
+    [90m   |[39m                   [31m^[39m
+    [90m 37|[39m   })
+    [90m 38|[39m })
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m src/presentation/components/layout/LandingPage.test.tsx[2m > [22mLandingPage Integration[2m > [22mrenders all key components
+[31m[1mTestingLibraryElementError[22m[39m: Found multiple elements with the text: Deep AI Scanning
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<h3[39m
+  [33mclass[39m=[32m"text-xl font-bold text-gray-800 mb-2"[39m
+[36m>[39m
+  [0mDeep AI Scanning[0m
+[36m</h3>[39m
+
+Ignored nodes: comments, script, style
+[36m<div[39m
+  [33mclass[39m=[32m"font-semibold mb-1"[39m
+[36m>[39m
+  [0mDeep AI Scanning[0m
+[36m</div>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"min-h-screen bg-gray-50 flex flex-col font-[Arial,Helvetica,sans-serif]"[39m
+    [36m>[39m
+      [36m<nav[39m
+        [33mclass[39m=[32m"flex items-center justify-between p-4 border-b"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center space-x-8"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"text-xl font-bold text-obsidian-green"[39m
+          [36m>[39m
+            [0mSecureVibe[0m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex space-x-4"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"text-gray-600 hover:text-black"[39m
+              [33mhref[39m=[32m"#"[39m
+            [36m>[39m
+              [0mDashboard[0m
+            [36m</a>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"underline decoration-obsidian-green text-black font-medium"[39m
+              [33mhref[39m=[32m"#"[39m
+            [36m>[39m
+              [0mScan[0m
+            [36m</a>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"text-gray-600 hover:text-black"[39m
+              [33mhref[39m=[32m"#"[39m
+            [36m>[39m
+              [0mReports[0m
+            [36m</a>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"text-gray-600 hover:text-black"[39m
+              [33mhref[39m=[32m"#"[39m
+            [36m>[39m
+              [0mSettings[0m
+            [36m</a>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center space-x-4"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"notifications"[39m
+              [33mclass[39m=[32m"p-2 hover:bg-gray-100 rounded-full"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"lucide lucide-bell w-5 h-5"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M10.268 21a2 2 0 0 0 3.464 0"[39m
+                [36m/>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"relative"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"user profile"[39m
+              [33mclass[39m=[32m"p-2 hover:bg-gray-100 rounded-full"[39m
+            [36m>[39m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"lucide lucide-user w-5 h-5"[39m
+                [33mfill[39m=[32m"none"[39m
+                [33mheight[39m=[32m"24"[39m
+                [33mstroke[39m=[32m"currentColor"[39m
+                [33mstroke-linecap[39m=[32m"round"[39m
+                [33mstroke-linejoin[39m=[32m"round"[39m
+                [33mstroke-width[39m=[32m"2"[39m
+                [33mviewBox[39m=[32m"0 0 24 24"[39m
+                [33mwidth[39m=[32m"24"[39m
+                [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+              [36m>[39m
+                [36m<path[39m
+                  [33md[39m=[32m"M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"[39m
+                [36m/>[39m
+                [36m<circle[39m
+                  [33mcx[39m=[32m"12"[39m
+                  [33mcy[39m=[32m"7"[39m
+                  [33mr[39m=[32m"4"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</nav>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"flex-1 flex flex-col pt-12 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"text-center mb-12"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-5xl font-extrabold text-gray-900 tracking-tight mb-4"[39m
+          [36m>[39m
+            [0mSecure your code with continuous [0m
+            [36m<br />[39m
+            [0m [0m
+            [36m<span[39m
+              [33mclass[39m=[32m"text-obsidian-green"[39m
+            [36m>[39m
+              [0mIntelligent Analysis[0m
+            [36m</span>[39m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-xl text-gray-500 max-w-2xl mx-auto"[39m
+          [36m>[39m
+            [0mDrag and drop your project files or paste snippets instantly. Detect vulnerabilities before they hit production.[0m
+          [36m</p>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"max-w-3xl mx-auto w-full mb-8 relative z-10"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex bg-gray-100 p-1 rounded-lg w-fit mx-auto mb-8"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"px-6 py-2 rounded-md font-medium transition-colors bg-gray-800 text-white shadow"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mUPLOAD FILES[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"px-6 py-2 rounded-md font-medium transition-colors text-gray-500 hover:text-gray-700"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mDIRECT CODE[0m
+            [36m</button>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"bg-white rounded-2xl shadow-sm border border-gray-100 p-2"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"border-2 rounded-xl p-12 flex flex-col items-center justify-center transition-all cursor-pointer bg-white border-dashed border-gray-300 hover:border-gray-400 hover:bg-gray-50"[39m
+              [33mdata-testid[39m=[32m"file-dropzone"[39m
+            [36...
+[90m [2m❯[22m Object.getElementError node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+[90m [2m❯[22m getElementError node_modules/@testing-library/dom/dist/query-helpers.js:[2m20:35[22m[39m
+[90m [2m❯[22m getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:[2m23:10[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m55:13[22m[39m
+[90m [2m❯[22m node_modules/@testing-library/dom/dist/query-helpers.js:[2m95:19[22m[39m
+[36m [2m❯[22m src/presentation/components/layout/LandingPage.test.tsx:[2m29:19[22m[39m
+    [90m 27|[39m
+    [90m 28|[39m     [90m// Info cards[39m
+    [90m 29|[39m     [34mexpect[39m(screen[33m.[39m[34mgetByText[39m([32m'Deep AI Scanning'[39m))[33m.[39m[34mtoBeInTheDocument[39m()
+    [90m   |[39m                   [31m^[39m
+    [90m 30|[39m     [34mexpect[39m(screen[33m.[39m[34mgetByText[39m([32m'OWASP Top 10'[39m))[33m.[39m[34mtoBeInTheDocument[39m()
+    [90m 31|[39m     [34mexpect[39m(screen[33m.[39m[34mgetByText[39m([32m'Zero-Knowledge'[39m))[33m.[39m[34mtoBeInTheDocument[39m()
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m8 passed[39m[22m[90m (10)[39m
+[2m      Tests [22m [1m[31m3 failed[39m[22m[2m | [22m[1m[32m16 passed[39m[22m[90m (19)[39m
+[2m   Start at [22m 15:48:53
+[2m   Duration [22m 7.29s[2m (transform 520ms, setup 3.56s, import 6.11s, tests 5.12s, environment 30.56s)[22m
+
