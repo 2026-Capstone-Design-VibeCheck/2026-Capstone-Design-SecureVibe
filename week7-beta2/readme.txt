@@ -11,7 +11,7 @@ pip install semgrep
 #3.5 oracledb 설치(로그인, 회원가입 정보 관리용)
       pip install oracledb
       sql로 유저 생성(cmd로) - id= c##manager, password = hellocnu
-      테이블 생성 - CREATE TABLE member(ID int, name varchar(255), password varchar(255), key varchar(255));
+      테이블 생성 - CREATE TABLE userlist(USERID int, ID varchar(255), name varchar(255), password varchar(255), key varchar(255));
       테스트용 유저 생성 - INSERT INTO userlist(USERID, ID, NAME, PASSWORD, KEY) VALUES (0, 'hellocse', 'test', '12345', '1q2w3e4r!');
       
 
