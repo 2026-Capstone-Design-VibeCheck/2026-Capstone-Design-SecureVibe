@@ -49,6 +49,8 @@
 ```bash
 cd backend
 pip install -r requirements.txt
+#google-generativeai 설치
+pip install google-generativeai
 # Semgrep 설치 필수
 pip install semgrep
 # 서버 실행
