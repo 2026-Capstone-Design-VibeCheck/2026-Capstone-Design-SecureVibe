@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #050038;
+  
+  /* Miro Color Palette */
+  --miro-yellow: #FFD02F;
+  --miro-yellow-deep: #EAB308;
+  --miro-yellow-light: #FFF9E0;
+  --miro-yellow-dark: #4B491F;
+  
+  --miro-blue: #050038;
+  --miro-blue-action: #4262FF;
+  
+  --miro-coral: #FF7066;
+  --miro-coral-light: #FFF1F0;
+  --miro-coral-dark: #5C1E1A;
+  
+  --miro-teal: #00D4C1;
+  --miro-teal-light: #E0F7F6;
+  --miro-teal-dark: #004D40;
+  
+  --miro-rose: #FDE6F7;
+  
+  --hairline: #E1E1E1;
+  --hairline-soft: #F0F0F0;
+  
+  --ink: #050038;
+  --charcoal: #1A1A1A;
+  --slate: #424242;
+  --steel: #757575;
+  --stone: #9E9E9E;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Outfit", var(--font-geist-sans), sans-serif;
+  
+  --color-miro-yellow: var(--miro-yellow);
+  --color-miro-yellow-light: var(--miro-yellow-light);
+  --color-miro-yellow-dark: var(--miro-yellow-dark);
+  --color-miro-blue: var(--miro-blue);
+  --color-miro-blue-action: var(--miro-blue-action);
+  --color-miro-coral: var(--miro-coral);
+  --color-miro-coral-light: var(--miro-coral-light);
+  --color-miro-coral-dark: var(--miro-coral-dark);
+  --color-miro-teal: var(--miro-teal);
+  --color-miro-teal-light: var(--miro-teal-light);
+  --color-miro-teal-dark: var(--miro-teal-dark);
+  --color-miro-rose-light: var(--miro-rose);
+  
+  --color-hairline: var(--hairline);
+  --color-hairline-soft: var(--hairline-soft);
+  
+  --spacing-hero: 120px;
+  --spacing-section-lg: 96px;
+  --spacing-section: 64px;
+  
+  --radius-xxxl: 28px;
+  --radius-feature: 32px;
+
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  --animate-fade-in: fade-in 0.8s ease-out forwards;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Overrides for Miro Style */
+h1, h2, h3, h4, h5 {
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-weight: 500;
+}
