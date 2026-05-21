@@ -7,7 +7,7 @@ pip install fastapi uvicorn python-multipart
 
 # 3. Semgrep 설치 (이미 설치되어 있다면 생략 가능)
 pip install semgrep
-
+pip install openai
 #3.5 oracledb 설치(로그인, 회원가입 정보 관리용)
       pip install oracledb
       sql로 유저 생성(cmd로) - id= c##manager, password = hellocnu
@@ -24,7 +24,7 @@ cd frontend
 
 # 2. package.json에 명시된 모든 패키지 설치
 npm install
-
+npm install pnpm
 # 3. Next.js 개발 서버 실행 (포트 3000번)
-npm run dev
+pnpm run dev
 
