@@ -1,0 +1,19 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "sample_id": "01_sql_injection",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 526,
+  "latency_s": 1.66,
+  "prompt_tokens": 238,
+  "completion_tokens": 86,
+  "cost_usd": 8.7e-05,
+  "response_text": "```\nimport sqlite3\n\ndef get_user(username: str):\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    query = \"SELECT id, email FROM users WHERE username = ?\"\n    cur.execute(query, (username,))\n    return cur.fetchone()\n```\n한줄 요약: (사용자 입력을 안전하게 처리하기 위해 파라미터 바인딩을 사용했습니다.)",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

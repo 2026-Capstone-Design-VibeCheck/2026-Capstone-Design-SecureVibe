@@ -1,0 +1,10 @@
+{
+  "id": "02_command_injection",
+  "language": "python",
+  "expected_label": "vulnerable",
+  "cwe": "CWE-78",
+  "vulnerability_description": "subprocess를 shell=True와 함께 문자열로 호출하여 OS Command Injection이 가능합니다.",
+  "semgrep_message": "Detected subprocess invocation with shell=True and user-controlled string. This is dangerous.",
+  "vulnerable_code": "import subprocess\n\ndef ping_host(host: str) -> str:\n    cmd = \"ping -c 1 \" + host\n    result = subprocess.run(cmd, shell=True, capture_output=True, text=True)\n    return result.stdout\n",
+  "evaluation_notes": "정답 방향: shell=False + 리스트 인자 + 입력 검증(정규식 또는 ipaddress 모듈). 함수 시그니처 유지."
+}

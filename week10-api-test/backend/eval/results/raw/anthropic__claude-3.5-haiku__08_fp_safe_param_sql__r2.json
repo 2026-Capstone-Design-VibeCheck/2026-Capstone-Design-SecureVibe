@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-3.5-haiku",
+  "sample_id": "08_fp_safe_param_sql",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 705,
+  "latency_s": 3.483,
+  "prompt_tokens": 439,
+  "completion_tokens": 216,
+  "cost_usd": 0.001215,
+  "response_text": "```python\nimport sqlite3\nfrom fastapi import HTTPException\n\ndef get_post(post_id_raw: str):\n    try:\n        post_id = int(post_id_raw)\n    except ValueError:\n        raise HTTPException(status_code=400, detail=\"invalid id\")\n\n    conn = sqlite3.connect('app.db')\n    try:\n        cur = conn.cursor()\n        cur.execute(\"SELECT id, title, body FROM posts WHERE id = ?\", (post_id,))\n        return cur.fetchone()\n    finally:\n        conn.close()  # 데이터베이스 연결 명시적 종료\n```\n\n한줄 요약: 데이터베이스 연결 리소스를 안전하게 관리하기 위해 finally 블록에서 연결을 명시적으로 닫음",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

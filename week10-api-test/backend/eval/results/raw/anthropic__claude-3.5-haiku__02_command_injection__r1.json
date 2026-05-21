@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-3.5-haiku",
+  "sample_id": "02_command_injection",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 492,
+  "latency_s": 3.085,
+  "prompt_tokens": 343,
+  "completion_tokens": 157,
+  "cost_usd": 0.000902,
+  "response_text": "```python\nimport subprocess\nimport shlex\n\ndef ping_host(host: str) -> str:\n    # shell=True 대신 안전한 리스트 방식으로 변경하여 커맨드 인젝션 방지\n    cmd = [\"ping\", \"-c\", \"1\", host]\n    result = subprocess.run(cmd, capture_output=True, text=True)\n    return result.stdout\n```\n\n한줄 요약: 문자열 결합 대신 안전한 커맨드 리스트를 사용하여 OS Command Injection 취약점 제거",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

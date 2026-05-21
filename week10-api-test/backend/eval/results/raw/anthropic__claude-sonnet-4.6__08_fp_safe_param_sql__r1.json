@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-sonnet-4.6",
+  "sample_id": "08_fp_safe_param_sql",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 705,
+  "latency_s": 6.649,
+  "prompt_tokens": 440,
+  "completion_tokens": 390,
+  "cost_usd": 0.00717,
+  "response_text": "```python\nimport sqlite3\nfrom fastapi import HTTPException\n\ndef get_post(post_id_raw: str):\n    try:\n        post_id = int(post_id_raw)  # 사용자 입력을 정수로 변환하여 SQL Injection 가능성을 원천 차단\n    except ValueError:\n        raise HTTPException(status_code=400, detail=\"invalid id\")\n\n    # 추가 방어: 음수 또는 비정상적으로 큰 ID 거부\n    if post_id <= 0:\n        raise HTTPException(status_code=400, detail=\"invalid id\")\n\n    # 파라미터 바인딩(?)을 사용하여 SQL Injection을 방지하고, 커넥션을 컨텍스트 매니저로 관리하여 리소스 누수 방지\n    with sqlite3.connect('app.db') as conn:\n        cur = conn.cursor()\n        cur.execute(\"SELECT id, title, body FROM posts WHERE id = ?\", (post_id,))\n        return cur.fetchone()\n```\n\n한줄 요약: 기존 코드는 이미 파라미터 바인딩과 정수 변환으로 SQL Injection에 안전하나, 음수 ID 유효성 검사 추가 및 `with` 문으로 DB 커넥션 누수를 방지하여 코드 견고성을 강화했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

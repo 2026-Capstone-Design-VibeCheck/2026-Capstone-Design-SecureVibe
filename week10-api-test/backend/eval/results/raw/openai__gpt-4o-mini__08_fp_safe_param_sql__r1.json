@@ -1,0 +1,19 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "sample_id": "08_fp_safe_param_sql",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 705,
+  "latency_s": 2.153,
+  "prompt_tokens": 293,
+  "completion_tokens": 128,
+  "cost_usd": 0.000121,
+  "response_text": "```\nimport sqlite3\nfrom fastapi import HTTPException\n\ndef get_post(post_id_raw: str):\n    if not post_id_raw.isdigit():  # 사용자 입력이 숫자인지 확인\n        raise HTTPException(status_code=400, detail=\"invalid id\")\n\n    post_id = int(post_id_raw)\n\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    cur.execute(\"SELECT id, title, body FROM posts WHERE id = ?\", (post_id,))\n    return cur.fetchone()\n```\n한줄 요약: 사용자 입력이 숫자인지 확인하여 SQL Injection 가능성을 제거했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

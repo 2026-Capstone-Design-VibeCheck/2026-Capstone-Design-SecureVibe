@@ -1,0 +1,19 @@
+{
+  "model": "meta-llama/llama-3.1-70b-instruct",
+  "sample_id": "06_weak_hash_md5",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 527,
+  "latency_s": 7.293,
+  "prompt_tokens": 250,
+  "completion_tokens": 180,
+  "cost_usd": 0.00016,
+  "response_text": "```\nimport hashlib\nimport secrets\n\ndef hash_password(password: str) -> str:\n    # MD5 대신 bcrypt 사용 및 salt 추가\n    salt = secrets.token_hex(16)\n    hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt.encode('utf-8'), 100000)\n    return salt + ':' + hashed_password.hex()\n\ndef verify_password(password: str, stored_hash: str) -> bool:\n    salt, stored_hash = stored_hash.split(':')\n    hashed_password = hashlib.pbkdf2_hmac('sha256', password.encode('utf-8'), salt.encode('utf-8'), 100000)\n    return hashed_password.hex() == stored_hash\n```\n\n한줄 요약: MD5를 bcrypt로 대체하고 salt를 추가하여 보안 취약점을 해결했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

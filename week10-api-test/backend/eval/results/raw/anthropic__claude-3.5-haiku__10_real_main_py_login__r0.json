@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-3.5-haiku",
+  "sample_id": "10_real_main_py_login",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 1158,
+  "latency_s": 5.711,
+  "prompt_tokens": 559,
+  "completion_tokens": 357,
+  "cost_usd": 0.001875,
+  "response_text": "```python\nimport oracledb\nfrom fastapi import Form, HTTPException\nimport logging\nfrom os import getenv\nfrom dotenv import load_dotenv\n\n# 환경변수와 로깅을 통해 보안 강화\nload_dotenv()\n\nasync def login(id: str = Form(...), password: str = Form(...)):\n    try:\n        connection = oracledb.connect(\n            user=getenv('DB_USER'),\n            password=getenv('DB_PASSWORD'),\n            dsn=getenv('DB_DSN')\n        )\n        logging.info(f'Login attempt for user: {id}')\n\n        cursor = connection.cursor()\n        cursor.execute(\n            \"SELECT * FROM userlist WHERE ID = :u_id AND PASSWORD = :u_pw\",\n            {\"u_id\": id, \"u_pw\": password}\n        )\n        result = cursor.fetchone()\n        if result:\n            logging.info(f\"User logged in: {result[1]}\")\n            return {\"message\": \"로그인 성공\", \"user\": {\"id\": result[1]}}\n        else:\n            return {\"message\": \"로그인 실패\"}\n    finally:\n        if 'connection' in locals():\n            connection.close()\n```\n\n한줄 요약: DB 자격증명을 환경변수로 대체하고, 민감한 정보 로깅을 안전하게 처리함.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

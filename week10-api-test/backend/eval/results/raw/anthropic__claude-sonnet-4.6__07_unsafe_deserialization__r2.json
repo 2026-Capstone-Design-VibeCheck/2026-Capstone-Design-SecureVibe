@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-sonnet-4.6",
+  "sample_id": "07_unsafe_deserialization",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 561,
+  "latency_s": 4.586,
+  "prompt_tokens": 378,
+  "completion_tokens": 314,
+  "cost_usd": 0.005844,
+  "response_text": "```python\nimport json\nimport base64\nfrom fastapi import FastAPI, Form, HTTPException\n\napp = FastAPI()\n\n@app.post(\"/restore-session\")\ndef restore_session(payload: str = Form(...)):\n    try:\n        # pickle 대신 JSON을 사용하여 임의 코드 실행 취약점(Insecure Deserialization) 방지\n        raw = base64.b64decode(payload)\n        session = json.loads(raw)\n        if not isinstance(session, dict):\n            raise ValueError(\"세션 데이터는 딕셔너리 형식이어야 합니다.\")\n    except (ValueError, json.JSONDecodeError) as e:\n        raise HTTPException(status_code=400, detail=f\"유효하지 않은 세션 데이터입니다: {e}\")\n    return {\"user\": session.get(\"user\")}\n```\n\n한줄 요약: `pickle`은 역직렬화 시 임의 코드를 실행할 수 있으므로, 안전한 데이터 포맷인 `json`으로 교체하여 Insecure Deserialization 취약점을 제거했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

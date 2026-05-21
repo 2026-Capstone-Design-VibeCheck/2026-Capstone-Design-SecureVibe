@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-3.5-haiku",
+  "sample_id": "01_sql_injection",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 526,
+  "latency_s": 3.021,
+  "prompt_tokens": 363,
+  "completion_tokens": 149,
+  "cost_usd": 0.000886,
+  "response_text": "```python\nimport sqlite3\n\ndef get_user(username: str):\n    # SQL Injection 방지를 위해 파라미터화된 쿼리 사용\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    query = \"SELECT id, email FROM users WHERE username = ?\"\n    cur.execute(query, (username,))\n    return cur.fetchone()\n```\n\n한줄 요약: 파라미터화된 쿼리를 사용하여 SQL Injection 취약점을 제거했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

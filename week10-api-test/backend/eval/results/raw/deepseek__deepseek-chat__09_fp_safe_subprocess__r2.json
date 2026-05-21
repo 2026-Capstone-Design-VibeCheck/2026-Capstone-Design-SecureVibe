@@ -1,0 +1,19 @@
+{
+  "model": "deepseek/deepseek-chat",
+  "sample_id": "09_fp_safe_subprocess",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 706,
+  "latency_s": 4.916,
+  "prompt_tokens": 294,
+  "completion_tokens": 138,
+  "cost_usd": 8e-05,
+  "response_text": "```\nimport subprocess\n\nALLOWED = {\"status\", \"version\", \"help\"}\n\ndef run_tool(action: str) -> str:\n    if action not in ALLOWED:\n        raise ValueError(\"action not allowed\")\n    result = subprocess.run(\n        [\"/usr/local/bin/mytool\"] + [action],  # 리스트 연결로 안전한 인자 전달\n        shell=False,\n        capture_output=True,\n        text=True,\n        timeout=10,\n    )\n    return result.stdout\n```\n한줄 요약: 리스트 연결 방식으로 변경하여 명확한 인자 구분을 유지하면서 명령어 주입 방지",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

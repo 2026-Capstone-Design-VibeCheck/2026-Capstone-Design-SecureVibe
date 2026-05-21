@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-3.5-haiku",
+  "sample_id": "05_xss_react",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 533,
+  "latency_s": 3.746,
+  "prompt_tokens": 371,
+  "completion_tokens": 209,
+  "cost_usd": 0.001133,
+  "response_text": "```typescript\nimport React from 'react';\nimport DOMPurify from 'dompurify';\n\nexport function CommentView({ comment }) {\n  // XSS 방지를 위해 DOMPurify로 HTML 입력값을 sanitize하여 안전하게 렌더링\n  const sanitizedComment = DOMPurify.sanitize(comment);\n\n  return (\n    <div className=\"comment\">\n      <h3>User said:</h3>\n      <div dangerouslySetInnerHTML={{ __html: sanitizedComment }} />\n    </div>\n  );\n}\n```\n한줄 요약: DOMPurify를 사용하여 사용자 입력 HTML을 안전하게 sanitize하고 XSS 위험을 제거합니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

@@ -1,0 +1,19 @@
+{
+  "model": "google/gemini-2.5-flash",
+  "sample_id": "09_fp_safe_subprocess",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 706,
+  "latency_s": 1.938,
+  "prompt_tokens": 292,
+  "completion_tokens": 170,
+  "cost_usd": 0.000513,
+  "response_text": "이 코드는 이미 안전하게 작성되어 있어 수정할 필요가 없습니다. Semgrep이 오탐한 사례입니다.\n\n```python\nimport subprocess\n\nALLOWED = {\"status\", \"version\", \"help\"}\n\ndef run_tool(action: str) -> str:\n    if action not in ALLOWED:\n        raise ValueError(\"action not allowed\")\n    result = subprocess.run(\n        [\"/usr/local/bin/mytool\", action],\n        shell=False,\n        capture_output=True,\n        text=True,\n        timeout=10,\n    )\n    return result.stdout\n```\n한줄 요약: `shell=False`와 화이트리스트, 리스트 인자 사용으로 OS Command Injection 취약점이 없어 수정할 필요가 없습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

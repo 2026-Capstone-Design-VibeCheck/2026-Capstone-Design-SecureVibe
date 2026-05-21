@@ -1,0 +1,19 @@
+{
+  "model": "google/gemini-2.5-flash",
+  "sample_id": "01_sql_injection",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 526,
+  "latency_s": 2.836,
+  "prompt_tokens": 242,
+  "completion_tokens": 140,
+  "cost_usd": 0.000423,
+  "response_text": "SQL Injection 취약점을 해결하기 위해 매개변수화된 쿼리를 사용하도록 코드를 수정했습니다.\n\n```python\nimport sqlite3\n\ndef get_user(username: str):\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    # SQL Injection 방지를 위해 매개변수화된 쿼리 사용\n    query = \"SELECT id, email FROM users WHERE username = ?\"\n    cur.execute(query, (username,))\n    return cur.fetchone()\n```\n한줄 요약: SQL Injection 방지를 위해 매개변수화된 쿼리를 사용하도록 변경했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

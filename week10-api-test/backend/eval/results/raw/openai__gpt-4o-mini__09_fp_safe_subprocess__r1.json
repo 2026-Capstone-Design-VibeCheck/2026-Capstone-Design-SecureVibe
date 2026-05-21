@@ -1,0 +1,19 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "sample_id": "09_fp_safe_subprocess",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 706,
+  "latency_s": 2.576,
+  "prompt_tokens": 278,
+  "completion_tokens": 126,
+  "cost_usd": 0.000117,
+  "response_text": "```\nimport subprocess\n\nALLOWED = {\"status\", \"version\", \"help\"}\n\ndef run_tool(action: str) -> str:\n    if action not in ALLOWED:\n        raise ValueError(\"action not allowed\")\n    # subprocess.run의 shell=True를 사용하지 않도록 수정하여 보안을 강화했습니다.\n    result = subprocess.run(\n        [\"/usr/local/bin/mytool\", action],\n        capture_output=True,\n        text=True,\n        timeout=10,\n    )\n    return result.stdout\n```\n한줄 요약: subprocess.run의 shell=True를 사용하지 않도록 수정하여 보안을 강화했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

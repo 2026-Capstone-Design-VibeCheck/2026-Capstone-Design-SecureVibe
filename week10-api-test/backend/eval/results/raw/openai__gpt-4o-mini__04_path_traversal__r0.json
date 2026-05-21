@@ -1,0 +1,19 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "sample_id": "04_path_traversal",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 527,
+  "latency_s": 3.137,
+  "prompt_tokens": 245,
+  "completion_tokens": 113,
+  "cost_usd": 0.000105,
+  "response_text": "```\nimport os\n\nUPLOAD_DIR = \"/var/app/uploads\"\n\ndef read_user_file(filename: str) -> str:\n    # 사용자 입력 파일명을 검증하여 경로 탐색 공격을 방지합니다.\n    safe_filename = os.path.basename(filename)\n    full_path = os.path.join(UPLOAD_DIR, safe_filename)\n    with open(full_path, \"r\", encoding=\"utf-8\") as f:\n        return f.read()\n```\n한줄 요약: 사용자 입력 파일명을 검증하여 경로 탐색 공격을 방지합니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

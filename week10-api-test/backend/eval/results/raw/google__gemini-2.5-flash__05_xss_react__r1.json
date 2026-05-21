@@ -1,0 +1,19 @@
+{
+  "model": "google/gemini-2.5-flash",
+  "sample_id": "05_xss_react",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 533,
+  "latency_s": 1.604,
+  "prompt_tokens": 236,
+  "completion_tokens": 160,
+  "cost_usd": 0.000471,
+  "response_text": "제공된 코드는 `dangerouslySetInnerHTML`을 사용하여 사용자 입력을 직접 렌더링하므로 Stored XSS에 취약합니다. 이를 해결하기 위해 사용자 입력을 안전하게 텍스트로 표시하도록 수정했습니다.\n\n```javascript\nimport React from 'react';\n\nexport function CommentView({ comment }) {\n  return (\n    <div className=\"comment\">\n      <h3>User said:</h3>\n      {/* dangerouslySetInnerHTML 대신 텍스트 노드로 직접 렌더링하여 XSS를 방지합니다. */}\n      <div>{comment}</div>\n    </div>\n  );\n}\n```\n한줄 요약: dangerouslySetInnerHTML 대신 텍스트 노드로 직접 렌더링하여 XSS를 방지합니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

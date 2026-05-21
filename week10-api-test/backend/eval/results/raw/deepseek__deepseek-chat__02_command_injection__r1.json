@@ -1,0 +1,19 @@
+{
+  "model": "deepseek/deepseek-chat",
+  "sample_id": "02_command_injection",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 492,
+  "latency_s": 4.42,
+  "prompt_tokens": 236,
+  "completion_tokens": 111,
+  "cost_usd": 6.4e-05,
+  "response_text": "```\nimport subprocess\n\ndef ping_host(host: str) -> str:\n    cmd = [\"ping\", \"-c\", \"1\", host]  # shell=True를 제거하고 리스트 형식으로 명령어를 전달하여 OS Command Injection 방지\n    result = subprocess.run(cmd, capture_output=True, text=True)\n    return result.stdout\n```\n한줄 요약: shell=True를 제거하고 리스트 형식으로 명령어를 전달하여 OS Command Injection을 방지했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

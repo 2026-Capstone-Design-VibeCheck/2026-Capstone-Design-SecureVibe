@@ -1,0 +1,10 @@
+{
+  "id": "01_sql_injection",
+  "language": "python",
+  "expected_label": "vulnerable",
+  "cwe": "CWE-89",
+  "vulnerability_description": "사용자 입력을 SQL 쿼리에 직접 문자열로 결합하여 SQL Injection이 발생합니다.",
+  "semgrep_message": "Detected user-controlled string concatenation into SQL query. This may lead to SQL injection.",
+  "vulnerable_code": "import sqlite3\n\ndef get_user(username: str):\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    query = \"SELECT id, email FROM users WHERE username = '\" + username + \"'\"\n    cur.execute(query)\n    return cur.fetchone()\n",
+  "evaluation_notes": "정답 방향: 파라미터 바인딩 (cur.execute(\"... WHERE username = ?\", (username,))). 함수 시그니처와 변수명 username/conn/cur 유지 확인."
+}

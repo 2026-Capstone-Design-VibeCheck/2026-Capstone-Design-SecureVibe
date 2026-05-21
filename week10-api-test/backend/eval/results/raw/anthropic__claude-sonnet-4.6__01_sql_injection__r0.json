@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-sonnet-4.6",
+  "sample_id": "01_sql_injection",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 526,
+  "latency_s": 5.505,
+  "prompt_tokens": 364,
+  "completion_tokens": 224,
+  "cost_usd": 0.004452,
+  "response_text": "```python\nimport sqlite3\n\ndef get_user(username: str):\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    # 파라미터 바인딩(?)을 사용하여 사용자 입력이 SQL 구문으로 해석되는 SQL Injection을 방지\n    query = \"SELECT id, email FROM users WHERE username = ?\"\n    cur.execute(query, (username,))\n    return cur.fetchone()\n```\n\n한줄 요약: 문자열 직접 결합 대신 SQLite의 파라미터 바인딩(`?` 플레이스홀더)을 사용하여, 사용자 입력값이 SQL 구문이 아닌 순수 데이터로만 처리되도록 수정하였습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

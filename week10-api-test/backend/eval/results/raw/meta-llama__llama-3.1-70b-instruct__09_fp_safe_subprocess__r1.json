@@ -1,0 +1,19 @@
+{
+  "model": "meta-llama/llama-3.1-70b-instruct",
+  "sample_id": "09_fp_safe_subprocess",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 706,
+  "latency_s": 5.262,
+  "prompt_tokens": 285,
+  "completion_tokens": 162,
+  "cost_usd": 0.000165,
+  "response_text": "```\nimport subprocess\n\nALLOWED = {\"status\", \"version\", \"help\"}\n\ndef run_tool(action: str) -> str:\n    # Semgrep이 subprocess 호출을 OS Command Injection 후보로 잡았지만, \n    # shell=False + 화이트리스트 + 리스트 인자를 모두 적용하여 안전합니다.\n    if action not in ALLOWED:\n        raise ValueError(\"action not allowed\")\n    result = subprocess.run(\n        [\"/usr/local/bin/mytool\", action],\n        shell=False,\n        capture_output=True,\n        text=True,\n        timeout=10,\n    )\n    return result.stdout\n```\n한줄 요약: Semgrep이 subprocess 호출을 OS Command Injection 후보로 잡았지만, shell=False + 화이트리스트 + 리스트 인자를 모두 적용하여 안전합니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

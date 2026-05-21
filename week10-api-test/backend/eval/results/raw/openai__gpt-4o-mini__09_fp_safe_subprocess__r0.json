@@ -1,0 +1,19 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "sample_id": "09_fp_safe_subprocess",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 706,
+  "latency_s": 2.271,
+  "prompt_tokens": 278,
+  "completion_tokens": 150,
+  "cost_usd": 0.000132,
+  "response_text": "```\nimport subprocess\n\nALLOWED = {\"status\", \"version\", \"help\"}\n\ndef run_tool(action: str) -> str:\n    if action not in ALLOWED:\n        raise ValueError(\"action not allowed\")\n    # subprocess.run의 shell=False를 유지하되, 안전성을 높이기 위해 리스트 인자를 사용합니다.\n    result = subprocess.run(\n        [\"/usr/local/bin/mytool\"] + [action],  # action을 리스트로 감싸서 추가\n        shell=False,\n        capture_output=True,\n        text=True,\n        timeout=10,\n    )\n    return result.stdout\n```\n한줄 요약: subprocess.run의 인자를 리스트로 안전하게 구성하여 OS Command Injection 위험을 줄였습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

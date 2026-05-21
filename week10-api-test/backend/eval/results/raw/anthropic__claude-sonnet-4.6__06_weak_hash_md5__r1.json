@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-sonnet-4.6",
+  "sample_id": "06_weak_hash_md5",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 527,
+  "latency_s": 6.446,
+  "prompt_tokens": 372,
+  "completion_tokens": 345,
+  "cost_usd": 0.006291,
+  "response_text": "```python\nimport bcrypt\n\n# bcrypt는 자동으로 salt를 생성하고 반복 해싱을 수행하여 무차별 대입 공격에 강합니다.\ndef hash_password(password: str) -> str:\n    # bcrypt를 사용하여 salt 포함 안전한 해시 생성 (MD5 대비 연산 비용이 높아 공격 저항성 향상)\n    return bcrypt.hashpw(password.encode(\"utf-8\"), bcrypt.gensalt()).decode(\"utf-8\")\n\ndef verify_password(password: str, stored_hash: str) -> bool:\n    # bcrypt의 내장 비교 함수로 타이밍 공격도 방지\n    return bcrypt.checkpw(password.encode(\"utf-8\"), stored_hash.encode(\"utf-8\"))\n```\n\n한줄 요약: MD5는 salt 없이 빠른 해시를 생성해 무차별 대입·레인보우 테이블 공격에 취약하므로, 자동 salt 생성과 비용 인수(cost factor)를 지원하는 `bcrypt`로 교체하여 패스워드 해싱 안전성을 확보했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

@@ -1,0 +1,19 @@
+{
+  "model": "google/gemini-2.5-flash",
+  "sample_id": "08_fp_safe_param_sql",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 705,
+  "latency_s": 1.758,
+  "prompt_tokens": 306,
+  "completion_tokens": 204,
+  "cost_usd": 0.000602,
+  "response_text": "제공된 코드는 이미 SQL Injection에 안전합니다. Semgrep이 잘못 탐지한 것이므로, 코드를 수정할 필요가 없습니다.\n\n```python\nimport sqlite3\nfrom fastapi import HTTPException\n\ndef get_post(post_id_raw: str):\n    try:\n        post_id = int(post_id_raw)\n    except ValueError:\n        raise HTTPException(status_code=400, detail=\"invalid id\")\n\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    cur.execute(\"SELECT id, title, body FROM posts WHERE id = ?\", (post_id,)) # 파라미터 바인딩과 정수 변환으로 SQL Injection에 안전함\n    return cur.fetchone()\n```\n한줄 요약: 기존 코드는 파라미터 바인딩과 정수 변환을 사용하여 SQL Injection에 안전하므로 수정할 필요가 없습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

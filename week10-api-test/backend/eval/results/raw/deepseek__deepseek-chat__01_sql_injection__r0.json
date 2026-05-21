@@ -1,0 +1,19 @@
+{
+  "model": "deepseek/deepseek-chat",
+  "sample_id": "01_sql_injection",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 526,
+  "latency_s": 4.554,
+  "prompt_tokens": 246,
+  "completion_tokens": 117,
+  "cost_usd": 6.7e-05,
+  "response_text": "```python\nimport sqlite3\n\ndef get_user(username: str):\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    query = \"SELECT id, email FROM users WHERE username = ?\"\n    cur.execute(query, (username,))\n    return cur.fetchone()\n```\n한줄 요약: SQL Injection 방지를 위해 파라미터화된 쿼리 사용\n\n주석: 사용자 입력을 직접 문자열 결합하지 않고 파라미터 바인딩 방식으로 처리하여 SQL Injection 취약점 제거",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

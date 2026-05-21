@@ -1,0 +1,19 @@
+{
+  "model": "meta-llama/llama-3.1-70b-instruct",
+  "sample_id": "08_fp_safe_param_sql",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 705,
+  "latency_s": 4.623,
+  "prompt_tokens": 300,
+  "completion_tokens": 146,
+  "cost_usd": 0.000163,
+  "response_text": "```\nimport sqlite3\nfrom fastapi import HTTPException\n\ndef get_post(post_id_raw: str):\n    try:\n        post_id = int(post_id_raw)\n    except ValueError:\n        raise HTTPException(status_code=400, detail=\"invalid id\")\n\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    # 파라미터 바인딩을 사용하여 SQL Injection 취약점을 제거\n    cur.execute(\"SELECT id, title, body FROM posts WHERE id = :post_id\", {\"post_id\": post_id})\n    return cur.fetchone()\n```\n\n한줄 요약: 파라미터 바인딩을 사용하여 SQL Injection 취약점을 제거",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

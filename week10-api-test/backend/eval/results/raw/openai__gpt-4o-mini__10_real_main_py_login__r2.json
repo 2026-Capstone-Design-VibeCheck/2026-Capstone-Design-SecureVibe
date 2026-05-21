@@ -1,0 +1,19 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "sample_id": "10_real_main_py_login",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 1158,
+  "latency_s": 3.76,
+  "prompt_tokens": 402,
+  "completion_tokens": 278,
+  "cost_usd": 0.000227,
+  "response_text": "```\nimport oracledb\nfrom fastapi import Form, HTTPException\nimport os\n\nasync def login(id: str = Form(...), password: str = Form(...)):\n    try:\n        # DB 자격증명을 환경 변수로 변경하여 하드코딩을 방지\n        connection = oracledb.connect(\n            user=os.getenv(\"DB_USER\"),\n            password=os.getenv(\"DB_PASSWORD\"),\n            dsn=os.getenv(\"DB_DSN\")\n        )\n        # 사용자 비밀번호를 로그에 출력하지 않도록 수정\n        print('Logging in with:', id)\n\n        cursor = connection.cursor()\n        cursor.execute(\n            \"SELECT * FROM userlist WHERE ID = :u_id AND PASSWORD = :u_pw\",\n            {\"u_id\": id, \"u_pw\": password}\n        )\n        result = cursor.fetchone()\n        if result:\n            print(\"name:\", result[2], \"key:\", result[4], \"id:\", result[1])\n            return {\"message\": \"로그인 성공\", \"user\": {\"id\": result[1]}}\n        else:\n            return {\"message\": \"로그인 실패\"}\n    finally:\n        if 'connection' in locals():\n            connection.close()\n```\n한줄 요약: DB 자격증명을 환경 변수로 변경하고, 비밀번호를 로그에 출력하지 않도록 수정했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

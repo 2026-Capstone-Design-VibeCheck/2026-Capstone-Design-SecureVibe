@@ -1,0 +1,19 @@
+{
+  "model": "deepseek/deepseek-chat",
+  "sample_id": "04_path_traversal",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 527,
+  "latency_s": 5.909,
+  "prompt_tokens": 259,
+  "completion_tokens": 163,
+  "cost_usd": 8.2e-05,
+  "response_text": "```python\nimport os\nfrom pathlib import Path\n\nUPLOAD_DIR = \"/var/app/uploads\"\n\ndef read_user_file(filename: str) -> str:\n    # 경로 순회 공격 방지를 위해 실제 경로 검증\n    full_path = Path(UPLOAD_DIR) / filename\n    canonical_path = full_path.resolve()\n    \n    if not canonical_path.is_relative_to(Path(UPLOAD_DIR)):\n        raise ValueError(\"Invalid file path\")\n        \n    with open(canonical_path, \"r\", encoding=\"utf-8\") as f:\n        return f.read()\n```\n한줄 요약: Path.resolve()와 is_relative_to()로 실제 경로가 UPLOAD_DIR 내인지 검증하여 경로 순회 공격 방지",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

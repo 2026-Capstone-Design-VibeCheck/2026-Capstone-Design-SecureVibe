@@ -1,0 +1,10 @@
+{
+  "id": "10_real_main_py_login",
+  "language": "python",
+  "expected_label": "vulnerable",
+  "cwe": "CWE-798, CWE-532",
+  "vulnerability_description": "(1) DB 자격증명이 하드코딩되어 있고 (2) 로그(print)에 사용자 비밀번호와 PII가 그대로 출력됩니다.",
+  "semgrep_message": "Hardcoded credentials and sensitive data exposure in logs.",
+  "vulnerable_code": "import oracledb\nfrom fastapi import Form, HTTPException\n\nasync def login(id: str = Form(...), password: str = Form(...)):\n    try:\n        connection = oracledb.connect(\n            user=\"c##manager\",\n            password=\"hellocnu\",\n            dsn=\"localhost:1521/xe\"\n        )\n        print('Logging in with:', id, password)\n\n        cursor = connection.cursor()\n        cursor.execute(\n            \"SELECT * FROM userlist WHERE ID = :u_id AND PASSWORD = :u_pw\",\n            {\"u_id\": id, \"u_pw\": password}\n        )\n        result = cursor.fetchone()\n        if result:\n            print(\"name:\", result[2], \"key:\", result[4], \"id:\", result[1])\n            return {\"message\": \"로그인 성공\", \"user\": {\"id\": result[1]}}\n        else:\n            return {\"message\": \"로그인 실패\"}\n    finally:\n        if 'connection' in locals():\n            connection.close()\n",
+  "evaluation_notes": "실제 backend/main.py 코드. (1) DB 자격증명을 환경변수로, (2) print에서 password/API key 제거 또는 마스킹, (3) 보너스: 비밀번호 평문 비교 → 해시 비교. 함수 시그니처 유지."
+}

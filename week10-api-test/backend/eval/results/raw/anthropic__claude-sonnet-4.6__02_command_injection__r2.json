@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-sonnet-4.6",
+  "sample_id": "02_command_injection",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 492,
+  "latency_s": 3.671,
+  "prompt_tokens": 344,
+  "completion_tokens": 208,
+  "cost_usd": 0.004152,
+  "response_text": "```python\nimport subprocess\n\ndef ping_host(host: str) -> str:\n    # shell=True 대신 리스트 형태로 인자를 전달하여 OS Command Injection 방지\n    cmd = [\"ping\", \"-c\", \"1\", host]\n    result = subprocess.run(cmd, shell=False, capture_output=True, text=True)\n    return result.stdout\n```\n\n한줄 요약: `shell=True`와 문자열 명령어 조합 대신 리스트 형태로 인자를 분리하면 셸 인터프리터를 거치지 않아 `;`, `&&`, `|` 등을 이용한 명령어 삽입 공격을 원천 차단할 수 있습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

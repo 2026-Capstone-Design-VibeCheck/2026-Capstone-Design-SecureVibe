@@ -1,0 +1,19 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "sample_id": "02_command_injection",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 492,
+  "latency_s": 1.92,
+  "prompt_tokens": 226,
+  "completion_tokens": 102,
+  "cost_usd": 9.5e-05,
+  "response_text": "```\nimport subprocess\n\ndef ping_host(host: str) -> str:\n    cmd = [\"ping\", \"-c\", \"1\", host]  # shell=True를 사용하지 않고 리스트로 명령어를 전달하여 OS Command Injection을 방지\n    result = subprocess.run(cmd, capture_output=True, text=True)\n    return result.stdout\n```\n한줄 요약: shell=True를 사용하지 않고 리스트 형태로 명령어를 전달하여 OS Command Injection을 방지했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

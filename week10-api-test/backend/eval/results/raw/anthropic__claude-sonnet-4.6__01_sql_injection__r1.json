@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-sonnet-4.6",
+  "sample_id": "01_sql_injection",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 526,
+  "latency_s": 3.715,
+  "prompt_tokens": 364,
+  "completion_tokens": 219,
+  "cost_usd": 0.004377,
+  "response_text": "```python\nimport sqlite3\n\ndef get_user(username: str):\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    # 파라미터화된 쿼리(Parameterized Query)를 사용하여 SQL Injection 취약점을 방지\n    query = \"SELECT id, email FROM users WHERE username = ?\"\n    cur.execute(query, (username,))\n    return cur.fetchone()\n```\n\n한줄 요약: 사용자 입력을 SQL 문자열에 직접 결합하는 대신 `?` 플레이스홀더와 파라미터 튜플을 사용하여, DB 드라이버가 입력값을 자동으로 이스케이프 처리하도록 변경하였습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

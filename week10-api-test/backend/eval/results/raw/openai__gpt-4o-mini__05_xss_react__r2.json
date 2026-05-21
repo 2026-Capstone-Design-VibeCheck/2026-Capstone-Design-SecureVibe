@@ -1,0 +1,19 @@
+{
+  "model": "openai/gpt-4o-mini",
+  "sample_id": "05_xss_react",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 533,
+  "latency_s": 1.636,
+  "prompt_tokens": 242,
+  "completion_tokens": 93,
+  "cost_usd": 9.2e-05,
+  "response_text": "```\nimport React from 'react';\n\nexport function CommentView({ comment }) {\n  return (\n    <div className=\"comment\">\n      <h3>User said:</h3>\n      <div>{comment}</div> {/* dangerouslySetInnerHTML 사용을 피하여 XSS 공격을 방지함 */}\n    </div>\n  );\n}\n```\n한줄 요약: dangerouslySetInnerHTML 사용을 피하여 XSS 공격을 방지함.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

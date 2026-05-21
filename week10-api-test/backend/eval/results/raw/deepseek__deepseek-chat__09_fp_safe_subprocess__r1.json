@@ -1,0 +1,19 @@
+{
+  "model": "deepseek/deepseek-chat",
+  "sample_id": "09_fp_safe_subprocess",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 706,
+  "latency_s": 7.511,
+  "prompt_tokens": 294,
+  "completion_tokens": 209,
+  "cost_usd": 0.0001,
+  "response_text": "```\nimport subprocess\n\nALLOWED = {\"status\", \"version\", \"help\"}\n\ndef run_tool(action: str) -> str:\n    if action not in ALLOWED:\n        raise ValueError(\"action not allowed\")\n    result = subprocess.run(\n        [\"/usr/local/bin/mytool\", action],\n        shell=False,\n        capture_output=True,\n        text=True,\n        timeout=10,\n        check=True  # 명령 실행 실패 시 예외 발생시키도록 추가하여 안전성 강화\n    )\n    return result.stdout\n```\n한줄 요약: check=True 추가로 명령 실행 실패 시 예외 발생시키도록 하여 안전성 강화\n\n기존 코드도 이미 안전한 구조였지만, check=True를 추가하면 명령 실행 실패 시 예외를 발생시켜 더욱 안전한 코드가 됩니다. shell=False, 화이트리스트 검증, 리스트 인자 사용 등 기존 보안 조치는 유지됩니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-3.5-haiku",
+  "sample_id": "09_fp_safe_subprocess",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 706,
+  "latency_s": 4.199,
+  "prompt_tokens": 418,
+  "completion_tokens": 220,
+  "cost_usd": 0.001214,
+  "response_text": "```python\nimport subprocess\nimport shlex\n\nALLOWED = {\"status\", \"version\", \"help\"}\n\ndef run_tool(action: str) -> str:\n    # 입력값 추가 검증 및 쉘 이스케이프 방지를 위해 shlex.quote() 사용\n    if action not in ALLOWED:\n        raise ValueError(\"action not allowed\")\n    safe_action = shlex.quote(action)\n    result = subprocess.run(\n        [\"/usr/local/bin/mytool\", safe_action],\n        shell=False,\n        capture_output=True,\n        text=True,\n        timeout=10,\n    )\n    return result.stdout\n```\n\n한줄 요약: 입력값에 대해 shlex.quote()를 통해 추가적인 이스케이프 처리로 보안성 강화",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

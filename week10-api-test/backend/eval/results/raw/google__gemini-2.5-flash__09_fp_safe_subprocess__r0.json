@@ -1,0 +1,19 @@
+{
+  "model": "google/gemini-2.5-flash",
+  "sample_id": "09_fp_safe_subprocess",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 706,
+  "latency_s": 1.858,
+  "prompt_tokens": 292,
+  "completion_tokens": 217,
+  "cost_usd": 0.00063,
+  "response_text": "제공된 코드는 이미 안전하며, Semgrep이 잘못된 긍정(false positive)을 보고한 경우입니다. `shell=False`와 허용 목록(whitelist)을 사용하고 있어 OS Command Injection 취약점이 없습니다. 따라서 수정할 필요가 없습니다.\n\n```python\nimport subprocess\n\nALLOWED = {\"status\", \"version\", \"help\"}\n\ndef run_tool(action: str) -> str:\n    # shell=False, 화이트리스트, 리스트 인자를 모두 사용하여 OS Command Injection에 안전함\n    if action not in ALLOWED:\n        raise ValueError(\"action not allowed\")\n    result = subprocess.run(\n        [\"/usr/local/bin/mytool\", action],\n        shell=False,\n        capture_output=True,\n        text=True,\n        timeout=10,\n    )\n    return result.stdout\n```\n한줄 요약: 코드는 이미 안전하며, Semgrep의 오탐이므로 수정할 필요가 없습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

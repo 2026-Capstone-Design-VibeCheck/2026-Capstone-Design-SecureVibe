@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-3.5-haiku",
+  "sample_id": "04_path_traversal",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 527,
+  "latency_s": 4.777,
+  "prompt_tokens": 376,
+  "completion_tokens": 253,
+  "cost_usd": 0.001313,
+  "response_text": "```python\nimport os\nimport os.path\n\nUPLOAD_DIR = \"/var/app/uploads\"\n\ndef read_user_file(filename: str) -> str:\n    # 사용자 입력 파일명의 안전성을 확인하고 경로 순회 공격을 방지\n    safe_filename = os.path.basename(filename)\n    full_path = os.path.normpath(os.path.join(UPLOAD_DIR, safe_filename))\n    \n    # 실제 업로드 디렉토리 내 파일인지 최종 확인\n    if not full_path.startswith(UPLOAD_DIR):\n        raise ValueError(\"Invalid file path\")\n    \n    with open(full_path, \"r\", encoding=\"utf-8\") as f:\n        return f.read()\n```\n한줄 요약: Path Traversal 취약점을 방지하기 위해 파일명 검증 및 정규화 로직 추가",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

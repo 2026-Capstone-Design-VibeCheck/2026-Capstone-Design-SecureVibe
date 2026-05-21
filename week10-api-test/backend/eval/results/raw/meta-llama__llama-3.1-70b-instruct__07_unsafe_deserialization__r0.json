@@ -1,0 +1,19 @@
+{
+  "model": "meta-llama/llama-3.1-70b-instruct",
+  "sample_id": "07_unsafe_deserialization",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 561,
+  "latency_s": 5.132,
+  "prompt_tokens": 256,
+  "completion_tokens": 128,
+  "cost_usd": 0.000141,
+  "response_text": "```\nimport base64\nimport json\nfrom fastapi import FastAPI, Form\n\napp = FastAPI()\n\n@app.post(\"/restore-session\")\ndef restore_session(payload: str = Form(...)):\n    # 보안 취약점을 해결하기 위해 pickle.loads 대신 json.loads 사용\n    raw = base64.b64decode(payload)\n    session = json.loads(raw.decode('utf-8'))  # bytes를 string으로 디코딩\n    return {\"user\": session.get(\"user\")}\n```\n\n한줄 요약: pickle.loads를 json.loads로 대체하여 임의 코드 실행 취약점을 해결했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

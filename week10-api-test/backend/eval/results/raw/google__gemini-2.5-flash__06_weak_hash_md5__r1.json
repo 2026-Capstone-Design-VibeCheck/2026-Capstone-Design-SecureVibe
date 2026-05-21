@@ -1,0 +1,19 @@
+{
+  "model": "google/gemini-2.5-flash",
+  "sample_id": "06_weak_hash_md5",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 527,
+  "latency_s": 2.639,
+  "prompt_tokens": 249,
+  "completion_tokens": 202,
+  "cost_usd": 0.00058,
+  "response_text": "MD5는 더 이상 안전한 해싱 알고리즘이 아니므로, 최신 보안 표준에 맞춰 bcrypt를 사용하여 비밀번호를 해싱하고 검증하도록 코드를 수정했습니다.\n\n```python\nimport bcrypt\n\ndef hash_password(password: str) -> str:\n    # MD5 대신 bcrypt를 사용하여 비밀번호를 해시하고 salt를 자동으로 적용합니다.\n    hashed = bcrypt.hashpw(password.encode(\"utf-8\"), bcrypt.gensalt())\n    return hashed.decode(\"utf-8\")\n\ndef verify_password(password: str, stored_hash: str) -> bool:\n    # bcrypt를 사용하여 저장된 해시와 입력된 비밀번호를 안전하게 비교합니다.\n    return bcrypt.checkpw(password.encode(\"utf-8\"), stored_hash.encode(\"utf-8\"))\n\n```\n한줄 요약: MD5 대신 bcrypt를 사용하여 비밀번호 해싱의 보안을 강화했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

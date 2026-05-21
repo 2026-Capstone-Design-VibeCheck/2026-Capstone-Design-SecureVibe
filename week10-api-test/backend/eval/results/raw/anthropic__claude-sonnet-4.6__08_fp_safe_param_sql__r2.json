@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-sonnet-4.6",
+  "sample_id": "08_fp_safe_param_sql",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 705,
+  "latency_s": 4.571,
+  "prompt_tokens": 440,
+  "completion_tokens": 305,
+  "cost_usd": 0.005895,
+  "response_text": "```python\nimport sqlite3\nfrom fastapi import HTTPException\n\ndef get_post(post_id_raw: str):\n    try:\n        post_id = int(post_id_raw)  # 정수 변환으로 SQL Injection 원천 차단, 파라미터 바인딩(?)으로 추가 보호\n    except ValueError:\n        raise HTTPException(status_code=400, detail=\"invalid id\")\n\n    # 커넥션 누수 방지를 위해 컨텍스트 매니저 사용\n    with sqlite3.connect('app.db') as conn:\n        cur = conn.cursor()\n        cur.execute(\"SELECT id, title, body FROM posts WHERE id = ?\", (post_id,))\n        return cur.fetchone()\n```\n\n한줄 요약: 원본 코드는 이미 `int()` 변환과 파라미터 바인딩(`?`)으로 SQL Injection에 안전하나, 추가로 `with` 컨텍스트 매니저를 적용해 커넥션 누수(resource leak) 문제를 함께 해소했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

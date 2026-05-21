@@ -1,0 +1,19 @@
+{
+  "model": "deepseek/deepseek-chat",
+  "sample_id": "04_path_traversal",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 527,
+  "latency_s": 7.563,
+  "prompt_tokens": 259,
+  "completion_tokens": 119,
+  "cost_usd": 7e-05,
+  "response_text": "```\nimport os\n\nUPLOAD_DIR = \"/var/app/uploads\"\n\ndef read_user_file(filename: str) -> str:\n    # 사용자 입력 파일명을 검증하여 Path Traversal 방지\n    full_path = os.path.join(UPLOAD_DIR, os.path.basename(filename))\n    with open(full_path, \"r\", encoding=\"utf-8\") as f:\n        return f.read()\n```\n한줄 요약: `os.path.basename`을 사용하여 파일명만 추출하여 Path Traversal을 방지했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

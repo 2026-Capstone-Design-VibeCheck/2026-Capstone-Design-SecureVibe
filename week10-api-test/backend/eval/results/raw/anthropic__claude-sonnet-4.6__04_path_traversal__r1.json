@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-sonnet-4.6",
+  "sample_id": "04_path_traversal",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 527,
+  "latency_s": 7.234,
+  "prompt_tokens": 377,
+  "completion_tokens": 344,
+  "cost_usd": 0.006291,
+  "response_text": "```python\nimport os\n\nUPLOAD_DIR = \"/var/app/uploads\"\n\ndef read_user_file(filename: str) -> str:\n    # os.path.basename으로 경로 구분자를 제거하고, realpath로 정규화된 절대경로가 허용 디렉터리 내에 있는지 검증하여 Path Traversal 방지\n    safe_filename = os.path.basename(filename)\n    full_path = os.path.realpath(os.path.join(UPLOAD_DIR, safe_filename))\n\n    if not full_path.startswith(os.path.realpath(UPLOAD_DIR) + os.sep):\n        raise ValueError(f\"허용되지 않은 파일 경로입니다: {full_path}\")\n\n    with open(full_path, \"r\", encoding=\"utf-8\") as f:\n        return f.read()\n```\n\n한줄 요약: `os.path.basename()`으로 경로 구분자를 제거하고, `os.path.realpath()`로 심볼릭 링크 및 `..` 등을 정규화한 뒤 허용 디렉터리 범위를 벗어나는지 검증하여 Path Traversal 취약점을 제거했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

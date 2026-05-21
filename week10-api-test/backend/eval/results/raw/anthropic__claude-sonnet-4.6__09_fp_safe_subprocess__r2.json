@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-sonnet-4.6",
+  "sample_id": "09_fp_safe_subprocess",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 706,
+  "latency_s": 7.657,
+  "prompt_tokens": 419,
+  "completion_tokens": 408,
+  "cost_usd": 0.007377,
+  "response_text": "```python\nimport subprocess\nimport shlex\n\nALLOWED = {\"status\", \"version\", \"help\"}\n\n# 실행 경로를 상수로 고정하고, 인자는 화이트리스트 검증 후 리스트로 전달하여 OS Command Injection 방지\nTOOL_PATH = \"/usr/local/bin/mytool\"\n\ndef run_tool(action: str) -> str:\n    # 화이트리스트 검증: 허용된 action만 실행\n    if action not in ALLOWED:\n        raise ValueError(\"action not allowed\")\n\n    # shell=False + 리스트 인자로 셸 해석 완전 차단, 경로 하드코딩으로 경로 조작 방지\n    result = subprocess.run(\n        [TOOL_PATH, action],\n        shell=False,          # 셸을 거치지 않아 메타문자 해석 불가\n        capture_output=True,\n        text=True,\n        timeout=10,\n        env={},               # 환경변수 격리로 PATH 하이재킹 방지\n    )\n    return result.stdout\n```\n\n한줄 요약: `shell=False` + 화이트리스트 + 리스트 인자는 이미 안전하나, 실행 경로 하드코딩·환경변수 격리(`env={}`)를 추가해 PATH 하이재킹 및 환경변수 기반 공격 경로까지 차단하였습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

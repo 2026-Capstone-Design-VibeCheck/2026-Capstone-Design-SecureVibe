@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-3.5-haiku",
+  "sample_id": "06_weak_hash_md5",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 527,
+  "latency_s": 4.489,
+  "prompt_tokens": 371,
+  "completion_tokens": 254,
+  "cost_usd": 0.001313,
+  "response_text": "```python\nimport hashlib\nimport secrets\n\ndef hash_password(password: str) -> str:\n    # 보안성 강화를 위해 SHA-256 해시와 salt를 사용하여 비밀번호 보호\n    salt = secrets.token_hex(16)\n    salted_password = salt + password\n    hashed_password = hashlib.sha256(salted_password.encode(\"utf-8\")).hexdigest()\n    return f\"{salt}${hashed_password}\"\n\ndef verify_password(password: str, stored_hash: str) -> bool:\n    salt, original_hash = stored_hash.split(\"$\")\n    new_hash = hashlib.sha256((salt + password).encode(\"utf-8\")).hexdigest()\n    return new_hash == original_hash\n```\n\n한줄 요약: MD5 대신 SHA-256을 사용하고 랜덤 salt를 추가하여 비밀번호 보안을 강화했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

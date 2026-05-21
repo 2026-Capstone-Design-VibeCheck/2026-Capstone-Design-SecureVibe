@@ -1,0 +1,19 @@
+{
+  "model": "deepseek/deepseek-chat",
+  "sample_id": "07_unsafe_deserialization",
+  "run_idx": 2,
+  "temperature": 0.1,
+  "prompt_chars": 561,
+  "latency_s": 4.244,
+  "prompt_tokens": 260,
+  "completion_tokens": 130,
+  "cost_usd": 7.3e-05,
+  "response_text": "```\nimport pickle\nimport base64\nfrom fastapi import FastAPI, Form\nimport json  # pickle 대신 안전한 json 사용\n\napp = FastAPI()\n\n@app.post(\"/restore-session\")\ndef restore_session(payload: str = Form(...)):\n    raw = base64.b64decode(payload)\n    session = json.loads(raw.decode('utf-8'))  # 신뢰할 수 없는 데이터는 pickle 대신 json으로 처리\n    return {\"user\": session.get(\"user\")}\n```\n```\n한줄 요약: pickle 대신 json을 사용하여 역직렬화 취약점 해결",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

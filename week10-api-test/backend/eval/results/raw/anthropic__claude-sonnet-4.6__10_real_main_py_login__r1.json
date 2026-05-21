@@ -1,0 +1,14 @@
+{
+  "model": "anthropic/claude-sonnet-4.6",
+  "sample_id": "10_real_main_py_login",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 1158,
+  "latency_s": null,
+  "prompt_tokens": null,
+  "completion_tokens": null,
+  "cost_usd": null,
+  "response_text": null,
+  "structure": null,
+  "error": "APIError(402): Error code: 402 - {'error': {'message': 'Insufficient credits. This account never purchased credits. Make sure your key is on the correct account or org, and if so, purchase more at https://openrouter.ai/settings/credits', 'code': 402}}"
+}

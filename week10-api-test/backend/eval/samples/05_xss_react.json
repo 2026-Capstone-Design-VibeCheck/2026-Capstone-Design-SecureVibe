@@ -1,0 +1,10 @@
+{
+  "id": "05_xss_react",
+  "language": "javascript",
+  "expected_label": "vulnerable",
+  "cwe": "CWE-79",
+  "vulnerability_description": "사용자 입력(comment)을 dangerouslySetInnerHTML로 직접 렌더링하여 Stored XSS가 발생할 수 있습니다.",
+  "semgrep_message": "User-controlled value flows to dangerouslySetInnerHTML.",
+  "vulnerable_code": "import React from 'react';\n\nexport function CommentView({ comment }) {\n  return (\n    <div className=\"comment\">\n      <h3>User said:</h3>\n      <div dangerouslySetInnerHTML={{ __html: comment }} />\n    </div>\n  );\n}\n",
+  "evaluation_notes": "정답 방향: dangerouslySetInnerHTML 제거하고 {comment}로 텍스트 렌더링, 또는 DOMPurify.sanitize. 컴포넌트 시그니처와 props명 유지."
+}

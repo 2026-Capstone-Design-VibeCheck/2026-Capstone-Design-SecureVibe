@@ -1,0 +1,19 @@
+{
+  "model": "deepseek/deepseek-chat",
+  "sample_id": "04_path_traversal",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 527,
+  "latency_s": 5.402,
+  "prompt_tokens": 259,
+  "completion_tokens": 170,
+  "cost_usd": 8.4e-05,
+  "response_text": "```\nimport os\n\nUPLOAD_DIR = \"/var/app/uploads\"\n\ndef read_user_file(filename: str) -> str:\n    # 사용자 입력 파일명의 경로 순회 공격 방지를 위해 정규화 후 상위 디렉토리 체크\n    full_path = os.path.normpath(os.path.join(UPLOAD_DIR, filename))\n    if not full_path.startswith(os.path.normpath(UPLOAD_DIR) + os.sep):\n        raise ValueError(\"Invalid file path\")\n    with open(full_path, \"r\", encoding=\"utf-8\") as f:\n        return f.read()\n```\n한줄 요약: os.path.normpath로 경로 정규화 후 UPLOAD_DIR 내 파일만 접근 가능하도록 체크하여 Path Traversal 방지",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

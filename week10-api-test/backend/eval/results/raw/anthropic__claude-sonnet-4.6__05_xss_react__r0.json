@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-sonnet-4.6",
+  "sample_id": "05_xss_react",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 533,
+  "latency_s": 5.301,
+  "prompt_tokens": 372,
+  "completion_tokens": 213,
+  "cost_usd": 0.004311,
+  "response_text": "```\nimport React from 'react';\n\nexport function CommentView({ comment }) {\n  return (\n    <div className=\"comment\">\n      <h3>User said:</h3>\n      {/* dangerouslySetInnerHTML 대신 텍스트 노드로 렌더링하여 XSS 공격을 방지 */}\n      <div>{comment}</div>\n    </div>\n  );\n}\n```\n\n한줄 요약: `dangerouslySetInnerHTML`을 제거하고 React의 기본 텍스트 렌더링(`{comment}`)을 사용하면, React가 자동으로 HTML 특수문자를 이스케이프 처리하여 Stored XSS 취약점을 차단할 수 있습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

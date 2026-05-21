@@ -1,0 +1,10 @@
+{
+  "id": "07_unsafe_deserialization",
+  "language": "python",
+  "expected_label": "vulnerable",
+  "cwe": "CWE-502",
+  "vulnerability_description": "신뢰할 수 없는 데이터에 대해 pickle.loads를 호출하여 임의 코드 실행이 가능합니다.",
+  "semgrep_message": "Untrusted data deserialized with pickle.loads — possible arbitrary code execution.",
+  "vulnerable_code": "import pickle\nimport base64\nfrom fastapi import FastAPI, Form\n\napp = FastAPI()\n\n@app.post(\"/restore-session\")\ndef restore_session(payload: str = Form(...)):\n    raw = base64.b64decode(payload)\n    session = pickle.loads(raw)\n    return {\"user\": session.get(\"user\")}\n",
+  "evaluation_notes": "정답 방향: pickle 대신 json.loads + 스키마 검증 (pydantic), 또는 HMAC 서명 검증 후 역직렬화. 엔드포인트 경로 유지."
+}

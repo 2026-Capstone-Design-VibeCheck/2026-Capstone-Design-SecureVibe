@@ -1,0 +1,19 @@
+{
+  "model": "meta-llama/llama-3.1-70b-instruct",
+  "sample_id": "01_sql_injection",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 526,
+  "latency_s": 4.386,
+  "prompt_tokens": 248,
+  "completion_tokens": 113,
+  "cost_usd": 0.000132,
+  "response_text": "```\nimport sqlite3\n\ndef get_user(username: str):\n    # SQL Injection 취약점을 방지하기 위해 파라미터화된 쿼리를 사용합니다.\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    query = \"SELECT id, email FROM users WHERE username =?\"\n    cur.execute(query, (username,))\n    return cur.fetchone()\n```\n\n한줄 요약: SQL Injection 취약점을 방지하기 위해 파라미터화된 쿼리를 사용합니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

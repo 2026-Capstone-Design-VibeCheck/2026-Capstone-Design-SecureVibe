@@ -1,0 +1,19 @@
+{
+  "model": "deepseek/deepseek-chat",
+  "sample_id": "08_fp_safe_param_sql",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 705,
+  "latency_s": 7.773,
+  "prompt_tokens": 306,
+  "completion_tokens": 197,
+  "cost_usd": 9.8e-05,
+  "response_text": "```\nimport sqlite3\nfrom fastapi import HTTPException\n\ndef get_post(post_id_raw: str):\n    try:\n        post_id = int(post_id_raw)  # 사용자 입력을 정수로 변환하여 SQL Injection 방지\n    except ValueError:\n        raise HTTPException(status_code=400, detail=\"invalid id\")\n\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    cur.execute(\"SELECT id, title, body FROM posts WHERE id = ?\", (post_id,))\n    result = cur.fetchone()\n    conn.close()  # 연결 종료를 명시적으로 처리하여 리소스 누수 방지\n    return result\n```\n한줄 요약: 사용자 입력을 정수로 변환하고 파라미터 바인딩을 사용하여 SQL Injection을 방지하며, 리소스 누수를 방지하기 위해 연결을 명시적으로 종료했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

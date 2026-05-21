@@ -1,0 +1,19 @@
+{
+  "model": "meta-llama/llama-3.1-70b-instruct",
+  "sample_id": "10_real_main_py_login",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 1158,
+  "latency_s": 9.61,
+  "prompt_tokens": 415,
+  "completion_tokens": 313,
+  "cost_usd": 0.00027,
+  "response_text": "```\nimport oracledb\nfrom fastapi import Form, HTTPException\nimport os\n\n# DB 자격증명은 환경변수로 관리\nDB_USER = os.environ.get('DB_USER')\nDB_PASSWORD = os.environ.get('DB_PASSWORD')\nDB_DSN = os.environ.get('DB_DSN')\n\nasync def login(id: str = Form(...), password: str = Form(...)):\n    try:\n        # DB 자격증명을 하드코딩하지 않음\n        connection = oracledb.connect(\n            user=DB_USER,\n            password=DB_PASSWORD,\n            dsn=DB_DSN\n        )\n        # 로그에 사용자 비밀번호와 PII를 출력하지 않음\n        print('Logging in with:', id)\n\n        cursor = connection.cursor()\n        cursor.execute(\n            \"SELECT * FROM userlist WHERE ID = :u_id AND PASSWORD = :u_pw\",\n            {\"u_id\": id, \"u_pw\": password}\n        )\n        result = cursor.fetchone()\n        if result:\n            # 로그에 PII를 출력하지 않음\n            print(\"Login success\")\n            return {\"message\": \"로그인 성공\", \"user\": {\"id\": result[1]}}\n        else:\n            return {\"message\": \"로그인 실패\"}\n    finally:\n        if 'connection' in locals():\n            connection.close()\n```\n한줄 요약: DB 자격증명을 환경변수로 관리하고 로그에 사용자 비밀번호와 PII를 출력하지 않도록 수정.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

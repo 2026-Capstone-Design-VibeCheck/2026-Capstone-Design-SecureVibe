@@ -1,0 +1,10 @@
+{
+  "id": "06_weak_hash_md5",
+  "language": "python",
+  "expected_label": "vulnerable",
+  "cwe": "CWE-327",
+  "vulnerability_description": "비밀번호를 MD5로 해시하고 있어 충돌 및 무차별 대입 공격에 취약합니다. salt도 없습니다.",
+  "semgrep_message": "Use of weak cryptographic primitive md5 for password hashing.",
+  "vulnerable_code": "import hashlib\n\ndef hash_password(password: str) -> str:\n    return hashlib.md5(password.encode(\"utf-8\")).hexdigest()\n\ndef verify_password(password: str, stored_hash: str) -> bool:\n    return hash_password(password) == stored_hash\n",
+  "evaluation_notes": "정답 방향: bcrypt 또는 hashlib.scrypt/argon2 + salt + 상수시간 비교(hmac.compare_digest). 함수 시그니처 유지."
+}

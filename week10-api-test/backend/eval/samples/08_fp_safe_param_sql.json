@@ -1,0 +1,10 @@
+{
+  "id": "08_fp_safe_param_sql",
+  "language": "python",
+  "expected_label": "safe",
+  "cwe": "CWE-89",
+  "vulnerability_description": "Semgrep이 SQL Injection으로 잡았지만, 실제로는 파라미터 바인딩을 사용하고 사용자 입력은 정수 변환을 거치므로 안전한 코드입니다.",
+  "semgrep_message": "Possible SQL injection — user input flows into query.",
+  "vulnerable_code": "import sqlite3\nfrom fastapi import HTTPException\n\ndef get_post(post_id_raw: str):\n    try:\n        post_id = int(post_id_raw)\n    except ValueError:\n        raise HTTPException(status_code=400, detail=\"invalid id\")\n\n    conn = sqlite3.connect('app.db')\n    cur = conn.cursor()\n    cur.execute(\"SELECT id, title, body FROM posts WHERE id = ?\", (post_id,))\n    return cur.fetchone()\n",
+  "evaluation_notes": "False Positive 케이스. 모델이 '이것은 취약점이 아님'을 인지하고 불필요한 수정을 자제하는지 평가. 만약 모델이 '안전하다'고 답하면 만점, 또 다른 무의미한 변경을 제안하면 감점."
+}

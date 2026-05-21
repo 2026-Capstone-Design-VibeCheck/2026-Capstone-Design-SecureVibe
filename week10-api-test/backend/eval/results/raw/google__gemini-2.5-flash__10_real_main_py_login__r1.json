@@ -1,0 +1,19 @@
+{
+  "model": "google/gemini-2.5-flash",
+  "sample_id": "10_real_main_py_login",
+  "run_idx": 1,
+  "temperature": 0.1,
+  "prompt_chars": 1158,
+  "latency_s": 5.435,
+  "prompt_tokens": 427,
+  "completion_tokens": 517,
+  "cost_usd": 0.001421,
+  "response_text": "다음은 요청하신 취약점이 해결된 코드입니다.\n\n```python\nimport oracledb\nfrom fastapi import Form, HTTPException\nimport os\n\nasync def login(id: str = Form(...), password: str = Form(...)):\n    # DB 자격 증명을 환경 변수에서 로드하도록 변경하여 하드코딩을 제거합니다.\n    db_user = os.getenv(\"DB_USER\", \"default_user\")\n    db_password = os.getenv(\"DB_PASSWORD\", \"default_password\")\n    db_dsn = os.getenv(\"DB_DSN\", \"localhost:1521/xe\")\n\n    connection = None  # connection 변수를 try 블록 밖에서 초기화하여 finally에서 항상 접근 가능하도록 합니다.\n    try:\n        connection = oracledb.connect(\n            user=db_user,\n            password=db_password,\n            dsn=db_dsn\n        )\n        # 사용자 비밀번호와 PII가 로그에 직접 출력되지 않도록 변경합니다.\n        print(f'Attempting login for user ID: {id}')\n\n        cursor = connection.cursor()\n        cursor.execute(\n            \"SELECT * FROM userlist WHERE ID = :u_id AND PASSWORD = :u_pw\",\n            {\"u_id\": id, \"u_pw\": password}\n        )\n        result = cursor.fetchone()\n        if result:\n            # 민감한 사용자 정보(PII)가 로그에 직접 출력되지 않도록 변경합니다.\n            print(f\"Login successful for user ID: {id}\")\n            return {\"message\": \"로그인 성공\", \"user\": {\"id\": result[1]}}\n        else:\n            print(f\"Login failed for user ID: {id}\")\n            return {\"message\": \"로그인 실패\"}\n    except Exception as e:\n        print(f\"An error occurred during login for user ID {id}: {e}\")\n        raise HTTPException(status_code=500, detail=\"Internal server error\")\n    finally:\n        if connection: # connection 객체가 유효한 경우에만 close를 호출합니다.\n            connection.close()\n```\n한줄 요약: DB 자격 증명을 환경 변수에서 로드하고, 민감한 사용자 정보가 로그에 직접 출력되지 않도록 수정했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

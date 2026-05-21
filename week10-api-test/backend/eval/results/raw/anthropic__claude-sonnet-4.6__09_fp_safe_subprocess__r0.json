@@ -1,0 +1,19 @@
+{
+  "model": "anthropic/claude-sonnet-4.6",
+  "sample_id": "09_fp_safe_subprocess",
+  "run_idx": 0,
+  "temperature": 0.1,
+  "prompt_chars": 706,
+  "latency_s": 8.815,
+  "prompt_tokens": 419,
+  "completion_tokens": 405,
+  "cost_usd": 0.007332,
+  "response_text": "```python\nimport subprocess\nimport shlex\n\nALLOWED = {\"status\", \"version\", \"help\"}\n\n# 실행 경로를 상수로 고정하고, 인자는 화이트리스트 검증 후 shlex.quote로 이중 이스케이프하여 OS Command Injection 가능성을 완전히 차단\nTOOL_PATH = \"/usr/local/bin/mytool\"\n\ndef run_tool(action: str) -> str:\n    # 화이트리스트 검증: 허용된 action만 실행\n    if action not in ALLOWED:\n        raise ValueError(\"action not allowed\")\n\n    # shell=False + 리스트 인자 + shlex.quote 이중 방어로 인젝션 원천 차단\n    safe_action = shlex.quote(action)\n    result = subprocess.run(\n        [TOOL_PATH, safe_action],\n        shell=False,          # 셸 해석 비활성화로 메타문자 무력화\n        capture_output=True,\n        text=True,\n        timeout=10,\n        env={},               # 환경변수 격리로 PATH 하이재킹 방지\n    )\n    return result.stdout\n```\n\n한줄 요약: `shlex.quote`로 인자를 이중 이스케이프하고 `env={}`로 환경변수를 격리하여 Semgrep이 지적한 OS Command Injection 잠재 경로를 완전히 제거했습니다.",
+  "structure": {
+    "has_code_block": true,
+    "has_summary": true,
+    "score": 2,
+    "max_score": 2
+  },
+  "error": null
+}

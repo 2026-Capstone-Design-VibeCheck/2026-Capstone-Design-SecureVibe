@@ -1,0 +1,10 @@
+{
+  "id": "04_path_traversal",
+  "language": "python",
+  "expected_label": "vulnerable",
+  "cwe": "CWE-22",
+  "vulnerability_description": "사용자가 제공한 파일명을 그대로 경로에 결합하여 Path Traversal(../../etc/passwd 등)이 가능합니다.",
+  "semgrep_message": "User input flows into file path. Possible directory traversal.",
+  "vulnerable_code": "import os\n\nUPLOAD_DIR = \"/var/app/uploads\"\n\ndef read_user_file(filename: str) -> str:\n    full_path = os.path.join(UPLOAD_DIR, filename)\n    with open(full_path, \"r\", encoding=\"utf-8\") as f:\n        return f.read()\n",
+  "evaluation_notes": "정답 방향: os.path.realpath 정규화 후 UPLOAD_DIR 하위인지 검증, 또는 secure_filename. 함수 시그니처 유지."
+}
