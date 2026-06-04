@@ -1,0 +1,209 @@
+{
+  "normal_results": [
+    {
+      "check_id": "python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+      "path": "scanned_target.py",
+      "start": {
+        "line": 14,
+        "col": 5,
+        "offset": 523
+      },
+      "end": {
+        "line": 14,
+        "col": 71,
+        "offset": 589
+      },
+      "extra": {
+        "metavars": {
+          "$DB": {
+            "start": {
+              "line": 14,
+              "col": 5,
+              "offset": 523
+            },
+            "end": {
+              "line": 14,
+              "col": 11,
+              "offset": 529
+            },
+            "abstract_content": "cursor",
+            "propagated_value": {
+              "svalue_start": {
+                "line": 12,
+                "col": 14,
+                "offset": 431
+              },
+              "svalue_end": {
+                "line": 12,
+                "col": 27,
+                "offset": 444
+              },
+              "svalue_abstract_content": "conn.cursor()"
+            }
+          }
+        },
+        "message": "Detected possible formatted SQL query. Use parameterized queries instead.",
+        "metadata": {
+          "owasp": [
+            "A01:2017 - Injection",
+            "A03:2021 - Injection",
+            "A05:2025 - Injection"
+          ],
+          "cwe": [
+            "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+          ],
+          "references": [
+            "https://stackoverflow.com/questions/775296/mysql-parameterized-queries"
+          ],
+          "category": "security",
+          "technology": [
+            "python"
+          ],
+          "cwe2022-top25": true,
+          "cwe2021-top25": true,
+          "subcategory": [
+            "audit"
+          ],
+          "likelihood": "LOW",
+          "impact": "HIGH",
+          "confidence": "LOW",
+          "license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+          "vulnerability_class": [
+            "SQL Injection"
+          ],
+          "source": "https://semgrep.dev/r/python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+          "shortlink": "https://sg.run/EkWw",
+          "semgrep.dev": {
+            "rule": {
+              "origin": "community",
+              "r_id": 9637,
+              "rule_id": "3qUP9k",
+              "rv_id": 1263479,
+              "url": "https://semgrep.dev/playground/r/kbTzGBe/python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+              "version_id": "kbTzGBe"
+            }
+          }
+        },
+        "severity": "WARNING",
+        "fingerprint": "e513e6adf8edf3ca01b70bae5d000037c84dde6b214cf7c3986012f4875c889f4549d93535808a00108b9f431695b5e8152e73fc7686ffce57290f5d3beb0355_0",
+        "lines": "",
+        "is_ignored": false,
+        "validation_state": "NO_VALIDATOR",
+        "engine_kind": "OSS"
+      }
+    }
+  ],
+  "raw_results": [
+    {
+      "analysis_process": {
+        "step1_input_source": "함수 get_user_data(user_input)의 매개변수 user_input이 외부 입력(예: 웹 요청, CLI 등)으로부터 유입됨",
+        "step2_data_flow": "user_input 값이 그대로 f-string 으로 구성된 SQL 문자열에 삽입되어 sqlite3.Cursor.execute()의 쿼리 인자로 전달됨. 중간에 정제나 파라미터 바인딩이 없으며, 문자열 결합이 직접 이루어짐",
+        "step3_rule_match": "Semgrep이 보고한 'formatted-sql-query' 규칙은 포맷된 문자열(f-string, % 연산자, + 연산자 등)로 SQL을 구성하는 경우를 탐지함. 실제 코드의 f\"SELECT * FROM users WHERE name = '{user_input}'\"와 정확히 일치하므로 규칙과 흐름이 일치함"
+      },
+      "is_false_positive": false,
+      "severity": "high",
+      "title": "SQL Injection",
+      "owasp": "A03:2021-Injection",
+      "description": "사용자 입력값이 그대로 SQL 쿼리 문자열에 삽입되어 데이터베이스에 전달됩니다. 파라미터화되지 않은 문자열 결합으로 인해 악의적인 입력이 SQL 구문을 변조할 수 있습니다.",
+      "risk": "공격자는 특수 문자를 포함한 입력을 제공해 임의의 SQL 명령을 실행할 수 있습니다. 이는 데이터 탈취, 변조, 삭제 등 심각한 데이터베이스 손상을 초래할 수 있습니다.",
+      "howToFix": [
+        "파라미터화된 쿼리를 사용하여 사용자 입력을 별도의 매개변수로 전달합니다.",
+        "sqlite3.Cursor.execute() 호출 시 ? 플레이스홀더와 튜플 형태의 파라미터를 활용합니다.",
+        "가능한 경우 ORM(예: SQLAlchemy)이나 고수준 데이터 접근 라이브러리를 도입해 자동으로 안전한 쿼리를 생성하도록 합니다."
+      ],
+      "reason_if_false_positive": null,
+      "original": {
+        "check_id": "python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+        "path": "scanned_target.py",
+        "start": {
+          "line": 14,
+          "col": 5,
+          "offset": 523
+        },
+        "end": {
+          "line": 14,
+          "col": 71,
+          "offset": 589
+        },
+        "extra": {
+          "metavars": {
+            "$DB": {
+              "start": {
+                "line": 14,
+                "col": 5,
+                "offset": 523
+              },
+              "end": {
+                "line": 14,
+                "col": 11,
+                "offset": 529
+              },
+              "abstract_content": "cursor",
+              "propagated_value": {
+                "svalue_start": {
+                  "line": 12,
+                  "col": 14,
+                  "offset": 431
+                },
+                "svalue_end": {
+                  "line": 12,
+                  "col": 27,
+                  "offset": 444
+                },
+                "svalue_abstract_content": "conn.cursor()"
+              }
+            }
+          },
+          "message": "Detected possible formatted SQL query. Use parameterized queries instead.",
+          "metadata": {
+            "owasp": [
+              "A01:2017 - Injection",
+              "A03:2021 - Injection",
+              "A05:2025 - Injection"
+            ],
+            "cwe": [
+              "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+            ],
+            "references": [
+              "https://stackoverflow.com/questions/775296/mysql-parameterized-queries"
+            ],
+            "category": "security",
+            "technology": [
+              "python"
+            ],
+            "cwe2022-top25": true,
+            "cwe2021-top25": true,
+            "subcategory": [
+              "audit"
+            ],
+            "likelihood": "LOW",
+            "impact": "HIGH",
+            "confidence": "LOW",
+            "license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+            "vulnerability_class": [
+              "SQL Injection"
+            ],
+            "source": "https://semgrep.dev/r/python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+            "shortlink": "https://sg.run/EkWw",
+            "semgrep.dev": {
+              "rule": {
+                "origin": "community",
+                "r_id": 9637,
+                "rule_id": "3qUP9k",
+                "rv_id": 1263479,
+                "url": "https://semgrep.dev/playground/r/kbTzGBe/python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+                "version_id": "kbTzGBe"
+              }
+            }
+          },
+          "severity": "WARNING",
+          "fingerprint": "e513e6adf8edf3ca01b70bae5d000037c84dde6b214cf7c3986012f4875c889f4549d93535808a00108b9f431695b5e8152e73fc7686ffce57290f5d3beb0355_0",
+          "lines": "",
+          "is_ignored": false,
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      }
+    }
+  ]
+}

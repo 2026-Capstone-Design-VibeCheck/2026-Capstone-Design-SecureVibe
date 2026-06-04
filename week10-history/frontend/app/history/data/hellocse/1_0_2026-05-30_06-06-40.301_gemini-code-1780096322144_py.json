@@ -1,0 +1,695 @@
+{
+  "normal_results": [
+    {
+      "check_id": "python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+      "path": "scanned_target.py",
+      "start": {
+        "line": 14,
+        "col": 5,
+        "offset": 510
+      },
+      "end": {
+        "line": 14,
+        "col": 71,
+        "offset": 576
+      },
+      "extra": {
+        "metavars": {
+          "$DB": {
+            "start": {
+              "line": 14,
+              "col": 5,
+              "offset": 510
+            },
+            "end": {
+              "line": 14,
+              "col": 11,
+              "offset": 516
+            },
+            "abstract_content": "cursor",
+            "propagated_value": {
+              "svalue_start": {
+                "line": 12,
+                "col": 14,
+                "offset": 420
+              },
+              "svalue_end": {
+                "line": 12,
+                "col": 27,
+                "offset": 433
+              },
+              "svalue_abstract_content": "conn.cursor()"
+            }
+          }
+        },
+        "message": "Detected possible formatted SQL query. Use parameterized queries instead.",
+        "metadata": {
+          "owasp": [
+            "A01:2017 - Injection",
+            "A03:2021 - Injection",
+            "A05:2025 - Injection"
+          ],
+          "cwe": [
+            "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+          ],
+          "references": [
+            "https://stackoverflow.com/questions/775296/mysql-parameterized-queries"
+          ],
+          "category": "security",
+          "technology": [
+            "python"
+          ],
+          "cwe2022-top25": true,
+          "cwe2021-top25": true,
+          "subcategory": [
+            "audit"
+          ],
+          "likelihood": "LOW",
+          "impact": "HIGH",
+          "confidence": "LOW",
+          "license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+          "vulnerability_class": [
+            "SQL Injection"
+          ],
+          "source": "https://semgrep.dev/r/python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+          "shortlink": "https://sg.run/EkWw",
+          "semgrep.dev": {
+            "rule": {
+              "origin": "community",
+              "r_id": 9637,
+              "rule_id": "3qUP9k",
+              "rv_id": 1263479,
+              "url": "https://semgrep.dev/playground/r/kbTzGBe/python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+              "version_id": "kbTzGBe"
+            }
+          }
+        },
+        "severity": "WARNING",
+        "fingerprint": "a351fc2c19b096bd91316d49981d5fe5f581e599ea3b513f15e8c83a72ee89dfb86b65d70177820fe250ba9f4519cb21cbaefe23a3f86bad04bc87a4fa60fd70_0",
+        "lines": "    cursor.execute(f\"SELECT * FROM users WHERE name = '{user_input}'\")",
+        "is_ignored": false,
+        "validation_state": "NO_VALIDATOR",
+        "engine_kind": "OSS"
+      }
+    },
+    {
+      "check_id": "python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query",
+      "path": "scanned_target.py",
+      "start": {
+        "line": 14,
+        "col": 5,
+        "offset": 510
+      },
+      "end": {
+        "line": 14,
+        "col": 71,
+        "offset": 576
+      },
+      "extra": {
+        "metavars": {
+          "$CONNECTION": {
+            "start": {
+              "line": 14,
+              "col": 5,
+              "offset": 510
+            },
+            "end": {
+              "line": 14,
+              "col": 11,
+              "offset": 516
+            },
+            "abstract_content": "cursor",
+            "propagated_value": {
+              "svalue_start": {
+                "line": 12,
+                "col": 14,
+                "offset": 420
+              },
+              "svalue_end": {
+                "line": 12,
+                "col": 27,
+                "offset": 433
+              },
+              "svalue_abstract_content": "conn.cursor()"
+            }
+          }
+        },
+        "message": "Avoiding SQL string concatenation: untrusted input concatenated with raw SQL query can result in SQL Injection. In order to execute raw query safely, prepared statement should be used. SQLAlchemy provides TextualSQL to easily used prepared statement with named parameters. For complex SQL composition, use SQL Expression Language or Schema Definition Language. In most cases, SQLAlchemy ORM will be a better option.",
+        "metadata": {
+          "cwe": [
+            "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+          ],
+          "owasp": [
+            "A01:2017 - Injection",
+            "A03:2021 - Injection",
+            "A05:2025 - Injection"
+          ],
+          "references": [
+            "https://docs.sqlalchemy.org/en/14/core/tutorial.html#using-textual-sql",
+            "https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_quick_guide.htm",
+            "https://docs.sqlalchemy.org/en/14/core/tutorial.html#using-more-specific-text-with-table-expression-literal-column-and-expression-column"
+          ],
+          "category": "security",
+          "technology": [
+            "sqlalchemy"
+          ],
+          "cwe2022-top25": true,
+          "cwe2021-top25": true,
+          "subcategory": [
+            "audit"
+          ],
+          "likelihood": "LOW",
+          "impact": "HIGH",
+          "confidence": "LOW",
+          "license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+          "vulnerability_class": [
+            "SQL Injection"
+          ],
+          "source": "https://semgrep.dev/r/python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query",
+          "shortlink": "https://sg.run/2b1L",
+          "semgrep.dev": {
+            "rule": {
+              "origin": "community",
+              "r_id": 10563,
+              "rule_id": "oqUz5y",
+              "rv_id": 1263578,
+              "url": "https://semgrep.dev/playground/r/bZT53rp/python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query",
+              "version_id": "bZT53rp"
+            }
+          }
+        },
+        "severity": "ERROR",
+        "fingerprint": "fbce17f949bdd4b6ad7c5487c6ed5ad075bf50a9f26f6f8aa70f46dcb8d5051f8597c161ac759a53206e2bade9800c95590724680e6b9dd4dfdf5bf83d6f3e5b_0",
+        "lines": "    cursor.execute(f\"SELECT * FROM users WHERE name = '{user_input}'\")",
+        "is_ignored": false,
+        "validation_state": "NO_VALIDATOR",
+        "engine_kind": "OSS"
+      }
+    },
+    {
+      "check_id": "generic.secrets.security.detected-aws-secret-access-key.detected-aws-secret-access-key",
+      "path": "scanned_target.py",
+      "start": {
+        "line": 38,
+        "col": 5,
+        "offset": 2327
+      },
+      "end": {
+        "line": 38,
+        "col": 70,
+        "offset": 2392
+      },
+      "extra": {
+        "metavars": {
+          "$3": {
+            "start": {
+              "line": 38,
+              "col": 5,
+              "offset": 2327
+            },
+            "end": {
+              "line": 38,
+              "col": 8,
+              "offset": 2330
+            },
+            "abstract_content": "AWS"
+          },
+          "$1": {
+            "start": {
+              "line": 38,
+              "col": 5,
+              "offset": 2327
+            },
+            "end": {
+              "line": 38,
+              "col": 70,
+              "offset": 2392
+            },
+            "abstract_content": "AWS_SECRET_ACCESS_KEY = \"9b1deb4d3b723c3243a3282b3a1d34f29b1deb4d"
+          },
+          "$4": {
+            "start": {
+              "line": 38,
+              "col": 9,
+              "offset": 2331
+            },
+            "end": {
+              "line": 38,
+              "col": 15,
+              "offset": 2337
+            },
+            "abstract_content": "SECRET"
+          },
+          "$6": {
+            "start": {
+              "line": 38,
+              "col": 27,
+              "offset": 2349
+            },
+            "end": {
+              "line": 38,
+              "col": 28,
+              "offset": 2350
+            },
+            "abstract_content": "="
+          },
+          "$7": {
+            "start": {
+              "line": 38,
+              "col": 29,
+              "offset": 2351
+            },
+            "end": {
+              "line": 38,
+              "col": 30,
+              "offset": 2352
+            },
+            "abstract_content": "\""
+          }
+        },
+        "message": "AWS Secret Access Key detected",
+        "metadata": {
+          "cwe": [
+            "CWE-798: Use of Hard-coded Credentials"
+          ],
+          "source-rule-url": "https://github.com/grab/secret-scanner/blob/master/scanner/signatures/pattern.go",
+          "category": "security",
+          "technology": [
+            "secrets",
+            "aws"
+          ],
+          "confidence": "LOW",
+          "owasp": [
+            "A07:2021 - Identification and Authentication Failures",
+            "A07:2025 - Authentication Failures"
+          ],
+          "references": [
+            "https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures"
+          ],
+          "cwe2022-top25": true,
+          "cwe2021-top25": true,
+          "subcategory": [
+            "audit"
+          ],
+          "likelihood": "LOW",
+          "impact": "HIGH",
+          "license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+          "vulnerability_class": [
+            "Hard-coded Secrets"
+          ],
+          "source": "https://semgrep.dev/r/generic.secrets.security.detected-aws-secret-access-key.detected-aws-secret-access-key",
+          "shortlink": "https://sg.run/Bk39",
+          "semgrep.dev": {
+            "rule": {
+              "origin": "community",
+              "r_id": 9051,
+              "rule_id": "2ZUbe8",
+              "rv_id": 1262862,
+              "url": "https://semgrep.dev/playground/r/zyTb2Dr/generic.secrets.security.detected-aws-secret-access-key.detected-aws-secret-access-key",
+              "version_id": "zyTb2Dr"
+            }
+          }
+        },
+        "severity": "ERROR",
+        "fingerprint": "46693b4f0b46b7fc72d6e916c617549e5417afe5daed089da79d28b8fe33b8d755e7e5a4b78b2b96e45f30243a1aafe1c7d2fef7839ffe4e8e77379a13d3a847_0",
+        "lines": "    AWS_SECRET_ACCESS_KEY = \"9b1deb4d3b723c3243a3282b3a1d34f29b1deb4d3b723c3243a3282b3a1d34f2\"",
+        "is_ignored": false,
+        "validation_state": "NO_VALIDATOR",
+        "engine_kind": "OSS"
+      }
+    }
+  ],
+  "raw_results": [
+    {
+      "analysis_process": {
+        "step1_input_source": "함수 get_user_data(user_input) 의 매개변수 user_input 이 외부 입력값으로 유입됨",
+        "step2_data_flow": "user_input 가 그대로 f-string 으로 문자열에 삽입되어 cursor.execute() 의 SQL 문에 전달됨. 중간에 정제나 파라미터화가 전혀 이루어지지 않음",
+        "step3_rule_match": "Semgrep 이 탐지한 'formatted-sql-query' 규칙은 f-string 으로 구성된 SQL 문을 찾는다. 실제 코드의 흐름과 정확히 일치하므로 진탐으로 판단"
+      },
+      "is_false_positive": false,
+      "severity": "high",
+      "title": "SQL 인젝션",
+      "owasp": "A03:2021-Injection",
+      "description": "사용자 입력값이 그대로 SQL 문자열에 삽입되어 데이터베이스 쿼리가 동적으로 구성됩니다. 파라미터화되지 않은 문자열 결합은 악의적인 입력을 통해 임의의 SQL 명령을 실행할 수 있게 합니다.",
+      "risk": "공격자는 특수 문자를 포함한 입력값을 제공해 WHERE 절을 우회하거나, 데이터베이스의 기밀 정보를 탈취·조작·삭제할 수 있습니다. 이는 서비스 무결성과 기밀성을 크게 위협합니다.",
+      "howToFix": [
+        "파라미터화된 쿼리를 사용하여 변수 값을 별도 바인딩하고 문자열 결합을 피한다 (예: cursor.execute('SELECT * FROM users WHERE name = ?', (user_input,)))",
+        "입력값을 화이트리스트 방식으로 검증하거나, 허용된 문자 집합만 허용하도록 제한한다",
+        "가능하면 ORM (예: SQLAlchemy) 을 사용해 자동으로 안전한 쿼리를 생성하도록 전환한다"
+      ],
+      "reason_if_false_positive": null,
+      "original": {
+        "check_id": "python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+        "path": "scanned_target.py",
+        "start": {
+          "line": 14,
+          "col": 5,
+          "offset": 510
+        },
+        "end": {
+          "line": 14,
+          "col": 71,
+          "offset": 576
+        },
+        "extra": {
+          "metavars": {
+            "$DB": {
+              "start": {
+                "line": 14,
+                "col": 5,
+                "offset": 510
+              },
+              "end": {
+                "line": 14,
+                "col": 11,
+                "offset": 516
+              },
+              "abstract_content": "cursor",
+              "propagated_value": {
+                "svalue_start": {
+                  "line": 12,
+                  "col": 14,
+                  "offset": 420
+                },
+                "svalue_end": {
+                  "line": 12,
+                  "col": 27,
+                  "offset": 433
+                },
+                "svalue_abstract_content": "conn.cursor()"
+              }
+            }
+          },
+          "message": "Detected possible formatted SQL query. Use parameterized queries instead.",
+          "metadata": {
+            "owasp": [
+              "A01:2017 - Injection",
+              "A03:2021 - Injection",
+              "A05:2025 - Injection"
+            ],
+            "cwe": [
+              "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+            ],
+            "references": [
+              "https://stackoverflow.com/questions/775296/mysql-parameterized-queries"
+            ],
+            "category": "security",
+            "technology": [
+              "python"
+            ],
+            "cwe2022-top25": true,
+            "cwe2021-top25": true,
+            "subcategory": [
+              "audit"
+            ],
+            "likelihood": "LOW",
+            "impact": "HIGH",
+            "confidence": "LOW",
+            "license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+            "vulnerability_class": [
+              "SQL Injection"
+            ],
+            "source": "https://semgrep.dev/r/python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+            "shortlink": "https://sg.run/EkWw",
+            "semgrep.dev": {
+              "rule": {
+                "origin": "community",
+                "r_id": 9637,
+                "rule_id": "3qUP9k",
+                "rv_id": 1263479,
+                "url": "https://semgrep.dev/playground/r/kbTzGBe/python.lang.security.audit.formatted-sql-query.formatted-sql-query",
+                "version_id": "kbTzGBe"
+              }
+            }
+          },
+          "severity": "WARNING",
+          "fingerprint": "a351fc2c19b096bd91316d49981d5fe5f581e599ea3b513f15e8c83a72ee89dfb86b65d70177820fe250ba9f4519cb21cbaefe23a3f86bad04bc87a4fa60fd70_0",
+          "lines": "    cursor.execute(f\"SELECT * FROM users WHERE name = '{user_input}'\")",
+          "is_ignored": false,
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      }
+    },
+    {
+      "analysis_process": {
+        "step1_input_source": "user_input 파라미터가 get_user_data 함수의 인자로 외부에서 전달됨",
+        "step2_data_flow": "user_input이 그대로 f-string에 삽입되어 cursor.execute에 전달되며, 정제·파라미터화 없이 직접 사용됨",
+        "step3_rule_match": "Semgrep이 보고한 'SQL 문자열 연결'과 실제 데이터 흐름이 일치하므로 취약점이 존재함"
+      },
+      "is_false_positive": false,
+      "severity": "high",
+      "title": "SQL Injection (SQLi)",
+      "owasp": "A03:2021-Injection",
+      "description": "사용자 입력값이 SQL 쿼리 문자열에 직접 삽입되어 데이터베이스에 전달됩니다. 정규화나 파라미터화 없이 문자열을 연결하면 악의적인 입력으로 임의의 SQL 명령을 실행할 수 있습니다.",
+      "risk": "공격자는 조작된 입력을 통해 데이터베이스 레코드를 조회, 수정, 삭제하거나 전체 테이블을 탈취할 수 있습니다. 이는 민감한 개인정보 유출 및 서비스 무결성 훼손으로 이어질 위험이 있습니다.",
+      "howToFix": [
+        "파라미터화된 쿼리를 사용하여 사용자 입력을 별도 변수로 전달합니다. 예: cursor.execute('SELECT * FROM users WHERE name = ?', (user_input,))",
+        "SQLAlchemy ORM 또는 SQL Expression Language를 활용해 직접 문자열을 구성하지 않고 객체 기반으로 쿼리를 작성합니다.",
+        "입력값에 대한 화이트리스트 검증이나 정규식 검사를 추가하여 허용된 형식만 데이터베이스에 전달되도록 합니다."
+      ],
+      "reason_if_false_positive": null,
+      "original": {
+        "check_id": "python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query",
+        "path": "scanned_target.py",
+        "start": {
+          "line": 14,
+          "col": 5,
+          "offset": 510
+        },
+        "end": {
+          "line": 14,
+          "col": 71,
+          "offset": 576
+        },
+        "extra": {
+          "metavars": {
+            "$CONNECTION": {
+              "start": {
+                "line": 14,
+                "col": 5,
+                "offset": 510
+              },
+              "end": {
+                "line": 14,
+                "col": 11,
+                "offset": 516
+              },
+              "abstract_content": "cursor",
+              "propagated_value": {
+                "svalue_start": {
+                  "line": 12,
+                  "col": 14,
+                  "offset": 420
+                },
+                "svalue_end": {
+                  "line": 12,
+                  "col": 27,
+                  "offset": 433
+                },
+                "svalue_abstract_content": "conn.cursor()"
+              }
+            }
+          },
+          "message": "Avoiding SQL string concatenation: untrusted input concatenated with raw SQL query can result in SQL Injection. In order to execute raw query safely, prepared statement should be used. SQLAlchemy provides TextualSQL to easily used prepared statement with named parameters. For complex SQL composition, use SQL Expression Language or Schema Definition Language. In most cases, SQLAlchemy ORM will be a better option.",
+          "metadata": {
+            "cwe": [
+              "CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')"
+            ],
+            "owasp": [
+              "A01:2017 - Injection",
+              "A03:2021 - Injection",
+              "A05:2025 - Injection"
+            ],
+            "references": [
+              "https://docs.sqlalchemy.org/en/14/core/tutorial.html#using-textual-sql",
+              "https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_quick_guide.htm",
+              "https://docs.sqlalchemy.org/en/14/core/tutorial.html#using-more-specific-text-with-table-expression-literal-column-and-expression-column"
+            ],
+            "category": "security",
+            "technology": [
+              "sqlalchemy"
+            ],
+            "cwe2022-top25": true,
+            "cwe2021-top25": true,
+            "subcategory": [
+              "audit"
+            ],
+            "likelihood": "LOW",
+            "impact": "HIGH",
+            "confidence": "LOW",
+            "license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+            "vulnerability_class": [
+              "SQL Injection"
+            ],
+            "source": "https://semgrep.dev/r/python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query",
+            "shortlink": "https://sg.run/2b1L",
+            "semgrep.dev": {
+              "rule": {
+                "origin": "community",
+                "r_id": 10563,
+                "rule_id": "oqUz5y",
+                "rv_id": 1263578,
+                "url": "https://semgrep.dev/playground/r/bZT53rp/python.sqlalchemy.security.sqlalchemy-execute-raw-query.sqlalchemy-execute-raw-query",
+                "version_id": "bZT53rp"
+              }
+            }
+          },
+          "severity": "ERROR",
+          "fingerprint": "fbce17f949bdd4b6ad7c5487c6ed5ad075bf50a9f26f6f8aa70f46dcb8d5051f8597c161ac759a53206e2bade9800c95590724680e6b9dd4dfdf5bf83d6f3e5b_0",
+          "lines": "    cursor.execute(f\"SELECT * FROM users WHERE name = '{user_input}'\")",
+          "is_ignored": false,
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      }
+    },
+    {
+      "analysis_process": {
+        "step1_input_source": "AWS_SECRET_ACCESS_KEY는 get_oss_client 함수 내부에서 리터럴 문자열로 직접 할당되며, 외부 입력값(파라미터 등)이 전혀 유입되지 않는다.",
+        "step2_data_flow": "리터럴 값이 변수에 저장되고 함수 반환값으로 전달되지만, 외부 입력값이 없고 해당 값이 외부 서비스나 파일 등에 쓰이지 않으므로 위험한 데이터 흐름이 존재하지 않는다.",
+        "step3_rule_match": "Semgrep은 하드코드된 AWS Secret Access Key 패턴을 감지했지만, 실제 코드에서는 테스트용 더미 키이며 사용·전파되지 않으므로 규칙이 탐지한 취약점 유형과 실제 위험 상황이 일치하지 않는다."
+      },
+      "is_false_positive": true,
+      "severity": null,
+      "title": null,
+      "owasp": null,
+      "description": null,
+      "risk": null,
+      "howToFix": null,
+      "reason_if_false_positive": "코드에 하드코드된 문자열이 존재하지만, 이는 로컬 도커 테스트용 더미 자격 증명으로 외부에 노출되거나 실제 AWS 서비스와 연동되지 않는다. 따라서 실제 보안 위험이 없으며, Semgrep이 탐지한 패턴은 의도된 테스트용 값이므로 오탐으로 판단한다.",
+      "original": {
+        "check_id": "generic.secrets.security.detected-aws-secret-access-key.detected-aws-secret-access-key",
+        "path": "scanned_target.py",
+        "start": {
+          "line": 38,
+          "col": 5,
+          "offset": 2327
+        },
+        "end": {
+          "line": 38,
+          "col": 70,
+          "offset": 2392
+        },
+        "extra": {
+          "metavars": {
+            "$3": {
+              "start": {
+                "line": 38,
+                "col": 5,
+                "offset": 2327
+              },
+              "end": {
+                "line": 38,
+                "col": 8,
+                "offset": 2330
+              },
+              "abstract_content": "AWS"
+            },
+            "$1": {
+              "start": {
+                "line": 38,
+                "col": 5,
+                "offset": 2327
+              },
+              "end": {
+                "line": 38,
+                "col": 70,
+                "offset": 2392
+              },
+              "abstract_content": "AWS_SECRET_ACCESS_KEY = \"9b1deb4d3b723c3243a3282b3a1d34f29b1deb4d"
+            },
+            "$4": {
+              "start": {
+                "line": 38,
+                "col": 9,
+                "offset": 2331
+              },
+              "end": {
+                "line": 38,
+                "col": 15,
+                "offset": 2337
+              },
+              "abstract_content": "SECRET"
+            },
+            "$6": {
+              "start": {
+                "line": 38,
+                "col": 27,
+                "offset": 2349
+              },
+              "end": {
+                "line": 38,
+                "col": 28,
+                "offset": 2350
+              },
+              "abstract_content": "="
+            },
+            "$7": {
+              "start": {
+                "line": 38,
+                "col": 29,
+                "offset": 2351
+              },
+              "end": {
+                "line": 38,
+                "col": 30,
+                "offset": 2352
+              },
+              "abstract_content": "\""
+            }
+          },
+          "message": "AWS Secret Access Key detected",
+          "metadata": {
+            "cwe": [
+              "CWE-798: Use of Hard-coded Credentials"
+            ],
+            "source-rule-url": "https://github.com/grab/secret-scanner/blob/master/scanner/signatures/pattern.go",
+            "category": "security",
+            "technology": [
+              "secrets",
+              "aws"
+            ],
+            "confidence": "LOW",
+            "owasp": [
+              "A07:2021 - Identification and Authentication Failures",
+              "A07:2025 - Authentication Failures"
+            ],
+            "references": [
+              "https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures"
+            ],
+            "cwe2022-top25": true,
+            "cwe2021-top25": true,
+            "subcategory": [
+              "audit"
+            ],
+            "likelihood": "LOW",
+            "impact": "HIGH",
+            "license": "Semgrep Rules License v1.0. For more details, visit semgrep.dev/legal/rules-license",
+            "vulnerability_class": [
+              "Hard-coded Secrets"
+            ],
+            "source": "https://semgrep.dev/r/generic.secrets.security.detected-aws-secret-access-key.detected-aws-secret-access-key",
+            "shortlink": "https://sg.run/Bk39",
+            "semgrep.dev": {
+              "rule": {
+                "origin": "community",
+                "r_id": 9051,
+                "rule_id": "2ZUbe8",
+                "rv_id": 1262862,
+                "url": "https://semgrep.dev/playground/r/zyTb2Dr/generic.secrets.security.detected-aws-secret-access-key.detected-aws-secret-access-key",
+                "version_id": "zyTb2Dr"
+              }
+            }
+          },
+          "severity": "ERROR",
+          "fingerprint": "46693b4f0b46b7fc72d6e916c617549e5417afe5daed089da79d28b8fe33b8d755e7e5a4b78b2b96e45f30243a1aafe1c7d2fef7839ffe4e8e77379a13d3a847_0",
+          "lines": "    AWS_SECRET_ACCESS_KEY = \"9b1deb4d3b723c3243a3282b3a1d34f29b1deb4d3b723c3243a3282b3a1d34f2\"",
+          "is_ignored": false,
+          "validation_state": "NO_VALIDATOR",
+          "engine_kind": "OSS"
+        }
+      }
+    }
+  ]
+}
