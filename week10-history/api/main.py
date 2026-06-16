@@ -9,7 +9,8 @@ import tempfile
 import shutil
 import stat
 import oracledb
-from google import genai
+import google.genai 
+from google.genai import Client
 from pydantic import BaseModel
 import asyncio
 
@@ -477,3 +478,7 @@ async def save_results(payload: SaveHistoryRequest):
         return {"message": "결과가 성공적으로 저장되었습니다.", "path": file_path}
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"결과 저장 중 오류 발생: {str(e)}")
+# 2. 루트 경로 엔드포인트 명시 (404 방지)
+@app.get("/")
+async def root():
+    return {"status": "online", "message": "Backend is running"}
