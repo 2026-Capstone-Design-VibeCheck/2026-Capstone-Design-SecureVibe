@@ -1,12 +1,12 @@
 {
-    "build": {
-    "env": {
-      "FORCE_BUILD": "true"
-    }
-  },
   "functions": {
     "backend/main.py": {
       "runtime": "vercel-python@0.10.0"
+    }
+  },
+  "build": {
+    "env": {
+      "PIP_REQUIREMENTS_FILE": "requirements.txt"
     }
   },
   "rewrites": [
