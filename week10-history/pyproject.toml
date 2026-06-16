@@ -1,5 +1,5 @@
 [project]
-name = "my-backend"
+name = "my-fastapi-app"
 version = "0.1.0"
 dependencies = [
     "fastapi",
@@ -7,8 +7,7 @@ dependencies = [
     "python-multipart",
     "oracledb",
     "google-genai",
-    "semgrep"
 ]
 
 [tool.vercel]
-entrypoint = "main.py"
+entrypoint = "backend/main.py"
