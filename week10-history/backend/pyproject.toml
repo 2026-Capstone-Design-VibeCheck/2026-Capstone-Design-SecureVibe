@@ -1,0 +1,10 @@
+[project]
+name = "my-backend"
+version = "0.1.0"
+dependencies = [
+    "fastapi>=0.100.0",
+    "uvicorn>=0.23.0",
+    "python-multipart>=0.0.6",
+    "oracledb>=2.0.0",
+    "google-genai>=0.1.0"
+]
