@@ -4,11 +4,6 @@
       "runtime": "vercel-python@0.10.0"
     }
   },
-  "build": {
-    "env": {
-      "PIP_REQUIREMENTS_FILE": "requirements.txt"
-    }
-  },
   "rewrites": [
     { "source": "/(.*)", "destination": "/backend/main.py" }
   ]
