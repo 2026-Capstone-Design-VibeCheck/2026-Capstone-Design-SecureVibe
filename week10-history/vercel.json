@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "backend/main.py": {
+      "runtime": "vercel-python@0.10.0"
+    }
+  },
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/backend/main.py" }
+  ]
+}
