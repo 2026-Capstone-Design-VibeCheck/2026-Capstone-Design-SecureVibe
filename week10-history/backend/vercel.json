@@ -1,5 +1,11 @@
 {
+  "build": {
+    "env": {
+      "FORCE_BUILD": "true",
+      "PIP_CACHE_DIR": "/tmp/pip"
+    }
+  },
   "rewrites": [
-    { "source": "/(.*)", "destination": "/backend/main.py" }
+    { "source": "/(.*)", "destination": "/main.py" }
   ]
 }
