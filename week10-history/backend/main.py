@@ -9,7 +9,7 @@ import tempfile
 import shutil
 import stat
 import oracledb
-from google import genai
+from google.generativeai import genai
 from pydantic import BaseModel
 import asyncio
 
