@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SecureVibe IDOR/BOLA Analyzer</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="container">
+<header class="hero"><h1>SecureVibe IDOR/BOLA Analyzer</h1><p>복합 입력을 받아 정적 분석·HTTP 동적 검증·Links2CPN 결과를 하나의 최종 보고서로 생성합니다.</p></header>
+<section class="card"><form id="f">
+<div class="grid">
+<label>GitHub 저장소 URL<input id="github-url" name="github_url" value="https://github.com/Radware/radware-vulnerable-api-application"></label>
+<label>OpenAPI URL<input id="openapi-url" name="openapi_url" value="http://127.0.0.1:8060/openapi.json"></label>
+<label>대상 API 호스트<input id="target-base-url" name="target_base_url" value="http://127.0.0.1:8060"></label>
+<label>User A 토큰<input id="target-token" name="target_token" type="password" placeholder="user1 access_token만 입력"></label>
+<label>Actor ID<input id="actor-id" name="actor_id" value="userA"></label>
+<label>Links2CPN 경로<input id="links2cpn-repo" name="links2cpn_repo" value="C:\Users\kimsunmin\OneDrive\바탕 화면\openapi-links-to-CPNs"></label>
+</div>
+<label>객체·Query 파라미터 예시(JSON)<textarea id="parameter-examples" name="parameter_examples">{
+  "userId": "40eb5ae1-60d1-4e85-9742-fb172b40025a",
+  "productId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+  "name": "Laptop",
+  "q": "test",
+  "role": "user",
+  "coupon_code": "test",
+  "orderId": "00000000-0000-4000-8000-000000000001",
+  "cardId": "00000000-0000-4000-8000-000000000001"
+}</textarea></label>
+<div class="checks"><label><input id="include-mutating" type="checkbox" name="include_mutating"> POST/PUT/PATCH/DELETE 실행 허용</label></div>
+<div class="actions"><button type="submit">분석 실행</button><button type="button" id="download-report" disabled>최종 보고서 HTML 다운로드</button></div>
+</form><p id="status"></p></section>
+<section id="out"></section>
+</main><script src="/static/app.js"></script>
+</body></html>
